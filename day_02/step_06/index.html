@@ -6,7 +6,8 @@
         var myApp = angular.module('myApp', []);
 
         myApp.controller('MyController', MyController);
-        function MyController() {
+        function MyController($filter) {
+
         	this.numberValue = 12345,67
         	this.stringValue = 'AngularJS is awesome!'
         	this.arrayValue = ['first', 'second', 'third', 'last', 'omg that\'s awesome', 'another', 'r value :D']
@@ -18,6 +19,7 @@
         			{firstname: 'Julien', lastname: 'Vidal'}
         		]
         	}
+          
         }
       </script>
     </head>

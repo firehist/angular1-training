@@ -1,0 +1,49 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('MyController', MyController);
+        function MyController($filter) {
+
+        	this.arrValue = [
+    			'benjamin',
+    			'alexandre',
+    			'yannick',
+    			'julien'
+    		]
+          
+        }
+
+        myApp.filter('custom', CustomFilter);
+        function CustomFilter() {
+        	return function(input) {
+        		return input[0].toUpperCase() + input.slice(1);
+        	};
+        }
+
+        myApp.filter('separator', CustomSepFilter);
+        function CustomSepFilter() {
+        	return function(input, separator) {
+        		separator = separator || ', ';
+        		return input.join(separator);
+        	};
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="MyController as my">
+
+      <h4>| custom</h4>
+      <div>
+      	{{ 'my string' | custom }}
+      </div>
+      <br />
+      {{ my.arrValue }}<br />
+      {{ my.arrValue | separator:' ------- ' }}
+
+    </body>
+
+</html>

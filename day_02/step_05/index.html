@@ -14,20 +14,19 @@
       <div ng-controller="MyController as my">
 
       	<form name="myForm">
-      		Email :
-			<input type="email"
-				name="myEmail"
-				minlength="5"
-				maxlength="100"
-				ng-model="myEmail"
-				required />
+      		Email : <input type="email"
+    				name="myEmail"
+    				minlength="5"
+    				maxlength="100"
+    				ng-model="myEmail"
+    				required />
 
-			<div ng-if="myForm.myEmail.$invalid">There is an error with the field</div>
+  			  <div ng-if="myForm.myEmail.$invalid">There is an error with the field</div>
 
-			<pre>
-				{{myForm | json}}
-			</pre>
-		</form>
+    			<pre>
+    				{{myForm | json}}
+    			</pre>
+    		</form>
         
       </div>
 
