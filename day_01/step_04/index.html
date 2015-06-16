@@ -1,0 +1,37 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        angular.module('myApp', [])
+          .controller('WeatherCtrl', WeatherCtrl);
+
+        function WeatherCtrl($scope) {
+          this.locations = ["Montpellier, France"];
+
+          this.addLocation = function addLocation () {
+            this.locations.push(this.location);
+          };
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp">
+
+      <div ng-controller="WeatherCtrl as weather">
+        <p>
+          <label for="location">Location: </label>
+          <input id="location" type="text" ng-model="weather.location" placeholder="Put your location"></input>
+          <button type="button" ng-click="weather.addLocation()">Add location</button>
+        </p>
+        <h4>Locations are:</h4>
+        <ul>
+          <li ng-repeat="scopedLocationVar in weather.locations">
+            {{$index + " -> " + scopedLocationVar}}
+          </li>
+        </ul>
+      </div>
+
+    </body>
+
+</html>

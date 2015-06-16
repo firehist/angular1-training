@@ -1,0 +1,71 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('MyController', MyController);
+        function MyController() {
+        	this.numberValue = 12345,67
+        	this.stringValue = 'AngularJS is awesome!'
+        	this.arrayValue = ['first', 'second', 'third', 'last', 'omg that\'s awesome', 'another', 'r value :D']
+        	this.objValue = {
+        		"users": [
+        			{firstname: 'Benjamin', lastname: 'Longearet'},
+        			{firstname: 'Alexandre', lastname: 'Lacoche'},
+        			{firstname: 'Yannick', lastname: 'Galatol'},
+        			{firstname: 'Julien', lastname: 'Vidal'}
+        		]
+        	}
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="MyController as my">
+
+      <h4>| currency</h4>
+      <div>
+      	<input type="number" ng-model="my.numberValue" aria-label="my.numberValue"> <br>
+  		default currency symbol ($): <span id="currency-default">{{my.numberValue | currency}}</span><br>
+  		custom currency identifier (USD$): <span id="currency-custom">{{my.numberValue | currency:"USD$"}}</span>
+  		no fractions (0): <span id="currency-no-fractions">{{my.numberValue | currency:"USD$":0}}</span>
+      </div>
+
+      <h4>| date</h4>
+      <div>
+      	<span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
+    	<span>{{1288323623006 | date:'medium'}}</span><br>
+		<span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
+   		<span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span><br>
+      </div>
+
+      <h4>| filter && | limitTo && | orderBy</h4>
+      filter by: <input type="text" ng-model="customFilter" /><br/>
+      limit to: <input type="number" ng-model="customLimit" /><br/>
+      Order by: <select ng-model="customOrderByAttr">
+      	<option value="firstname" selected>firstname</option>
+      	<option value="lastname">lastname</option>
+      </select> <select ng-model="customOrderReverse">
+      	<option value="1" selected>True</option>
+      	<option value="0">False</option>
+      </select>
+      <div>
+      	<ul>
+      		<li ng-repeat="user in my.objValue.users | filter:customFilter | limitTo:customLimit | orderBy:customOrderByAttr:customOrderReverse">
+      			{{user.firstname + ' ' + user.lastname}}
+      		</li>
+      	</ul>
+      </div>
+
+      <h4>| json</h4>
+      {{my.objValue}}
+      <pre>
+      {{my.objValue | json}}
+      </pre>
+
+      <h4>| </h4>
+
+    </body>
+
+</html>

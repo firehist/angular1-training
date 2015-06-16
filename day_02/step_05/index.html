@@ -1,0 +1,36 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        angular.module('myApp', []).controller('MyController', MyController);
+        function MyController() {
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp">
+
+      <div ng-controller="MyController as my">
+
+      	<form name="myForm">
+      		Email :
+			<input type="email"
+				name="myEmail"
+				minlength="5"
+				maxlength="100"
+				ng-model="myEmail"
+				required />
+
+			<div ng-if="myForm.myEmail.$invalid">There is an error with the field</div>
+
+			<pre>
+				{{myForm | json}}
+			</pre>
+		</form>
+        
+      </div>
+
+    </body>
+
+</html>

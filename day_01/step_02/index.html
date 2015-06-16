@@ -1,0 +1,23 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+        myApp.controller('WeatherCtrl', WeatherCtrl);
+
+        function WeatherCtrl() {
+          this.location = "Montpellier, France";
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp">
+
+      <div ng-controller="WeatherCtrl as weather">
+        Weather Location: {{ weather.location }} 
+      </div>
+
+    </body>
+
+</html>

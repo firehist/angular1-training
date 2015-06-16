@@ -1,0 +1,69 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        angular.module('myApp', [])
+          .controller('WeatherCtrl', WeatherCtrl);
+
+        function WeatherCtrl($scope) {
+          var self = this;
+          this.locations = [{
+            name: "Montpellier, France"
+          }, {
+            name: "Avignon, France"
+          }, {
+            name: "Genève, Suisse"
+          }];
+
+          // It doesn't works
+          $scope.$watch('weather.locations', function (oldValue, newValue) {
+            console.log('watch 01', oldValue, 'newValue 01', newValue);
+          });
+
+          // It works
+          $scope.$watch('weather.locations.length', function (oldValue, newValue) {
+            console.log('watch 02', oldValue, 'newValue 02', newValue);
+          });
+
+          $scope.$watch(function () {
+            return self.locations.length;
+          }, function (oldValue, newValue) {
+            console.log('watch 03', oldValue, 'newValue 03', newValue);
+          });
+
+          this.addLocation = function addLocation () {
+            this.locations.push({
+              name: this.location
+            });
+          };
+
+          this.removeLocation = function removeLocation (locationIndex) {
+            this.locations.splice(locationIndex, 1);
+          };
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp">
+
+      <div ng-controller="WeatherCtrl as weather">
+        <p>
+          <label for="location">Location: </label>
+          <input id="location" type="text" ng-model="weather.location" placeholder="Put your location"></input>
+          <button type="button" ng-click="weather.addLocation()">Add location</button>
+        </p>
+        <h4>Locations are:</h4>
+        <ul>
+          <li ng-repeat="scopedLocationVar in weather.locations">
+            {{$index + " -> "}} - <input type="text" ng-model="scopedLocationVar.name" /><button type="button" ng-click="weather.removeLocation($index)">Remove</button>
+          </li>
+        </ul>
+        <p>
+          {{weather.locations|json}}
+        </p>
+      </div>
+
+    </body>
+
+</html>

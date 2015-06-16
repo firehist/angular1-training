@@ -1,0 +1,59 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        angular.module('myApp', []).controller('MyController', MyController);
+        function MyController() {
+          this.ifCondition = true
+          this.showCondition = true
+          this.imgUrl = "http://ranger.gamebanana.com/img/ico/sprays/amazing_horse_spray_2.png";
+          this.message = ""
+          this.selection = ""
+        }
+      </script>
+    </head>
+
+    <body ng-app="myApp">
+
+      <div ng-controller="MyController as my">
+        <h4>ng-if</h4>
+        <input type="checkbox" ng-model="my.ifCondition" />
+        <p ng-if="my.ifCondition">paragraph</p>
+        <hr/>
+
+        <h4>ng-show</h4>
+        <input type="checkbox" ng-model="my.showCondition" />
+        <p ng-show="my.showCondition">paragraph</p>
+        <hr/>
+
+        <h4>ng-class</h4>
+        <p ng-class="{mytrueclass: true, myfalseclass: false}">empty paragraph</p>
+        <hr/>
+
+        <h4>ng-src</h4>
+        <p>Here is an image w/ ng-src <img ng-src="{{my.imgUrl}}" /></p>
+        <p>Here is an image w/o ng-src <img src="{{my.imgUrl}}" /></p>
+        <hr/>
+
+        <h4>ng-copy, ng-paste</h4>
+        <textarea
+          ng-copy="my.message = 'Copy detected'"
+          ng-paste="my.message = 'Paste detected'"
+          ng-cut="my.message = 'Cut detected'"
+        >Default content</textarea>
+        {{my.message}}
+
+        <h4>ng-copy, ng-paste</h4>
+        <button type="button" ng-click="my.selection = 'first'">First</button> <button type="button" ng-click="my.selection = 'second'">Second</button> <button type="button" ng-click="my.selection = ''">Default</button>
+        <div ng-switch on="my.selection">
+          <div ng-switch-when="first">First DIV</div>
+          <div ng-switch-when="second">Second DIV</div>
+          <div ng-switch-default>Default DIV</div>
+        </div>
+
+      </div>
+
+    </body>
+
+</html>
