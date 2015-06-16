@@ -20,16 +20,35 @@
         myApp.filter('custom', CustomFilter);
         function CustomFilter() {
         	return function(input) {
-        		return input[0].toUpperCase() + input.slice(1);
+        		try {
+        			return input[0].toUpperCase() + input.slice(1);
+        		} catch (e) {
+        			return input;
+        		}
         	};
         }
 
         myApp.filter('separator', CustomSepFilter);
         function CustomSepFilter() {
         	return function(input, separator) {
-        		separator = separator || ', ';
-        		return input.join(separator);
+	        	separator = separator || ', ';
+	        	try {
+	        		return input.join(separator);
+        		} catch (e) {
+        			return input;
+        		}
         	};
+        }
+
+        myApp.filter('reverse', reverseFilter);
+        function reverseFilter() {
+        	return function (input) {
+        		try {
+        			return input.split('').reverse().join('');
+        		} catch (e) {
+        			return input;
+        		}
+        	}
         }
       </script>
     </head>
@@ -38,11 +57,24 @@
 
       <h4>| custom</h4>
       <div>
-      	{{ 'my string' | custom }}
+      	<input type="text" ng-model="customText" />
+      	{{ customText | custom }}
       </div>
       <br />
-      {{ my.arrValue }}<br />
-      {{ my.arrValue | separator:' ------- ' }}
+
+      <h4>| separator</h4>
+      <div>
+      	<input type="text" ng-model="separatorText" />
+	    {{ my.arrValue }}<br />
+	    {{ my.arrValue | separator:separatorText }}
+	  </div>
+      <br/>
+
+      <h4>| reverse</h4>
+      <div>
+      	<input type="text" ng-model="reverseText" />
+      	{{ reverseText | reverse }}
+      </div>
 
     </body>
 
