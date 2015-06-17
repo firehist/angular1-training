@@ -1,0 +1,19 @@
+<html>
+
+    <head>
+      <script src="../../bower_components/angular/angular.js"></script>
+      <script src="../../bower_components/angular-route/angular-route.js"></script>
+      <script src="js/app.js"></script>
+
+      <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
+
+    <body ng-app="myApp">
+
+      <h3>My title</h3>
+      <a ng-href="#/home">home</a> - <a ng-href="#/user">user</a> - <a ng-href="#/user/1">user : 1</a> - <a ng-href="#/user/2">user : 2</a> - <a ng-href="#/user/3">user : 3</a> - <a ng-href="#/user/4">user : 4</a>
+      <div ng-view></div>
+
+    </body>
+
+</html>

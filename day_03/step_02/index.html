@@ -1,0 +1,73 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('myController', function () {
+          this.object = {
+            firstname: 'Benjamin',
+            lastname: 'Longearet'
+          };
+          this.string = 'String Benjamin'
+          this.method = function () {
+            console.log('my method');
+          };
+        });
+
+        myApp.directive('someDirectiveOpen', function () {
+          return {
+            controller: function () {
+              this.name = 'Benjamin';
+            },
+            controllerAs: 'ctrl',
+            template: '<div>{{ctrl.name}}</div>'
+          };
+        });
+
+        myApp.directive('someDirective', function () {
+          return {
+            scope: {},
+            controller: function () {
+              this.name = 'Benjamin';
+            },
+            controllerAs: 'ctrl',
+            template: '<div>{{ctrl.name}}</div>'
+          };
+        });
+
+        myApp.directive('someAdvancedDirective', function () {
+          return {
+            scope: {},
+            bindToController: {
+              someObject: '=',
+              someString: '@',
+              someExpr: '&'
+            },
+            controller: function () {
+              this.name = 'Benjamin';
+            },
+            controllerAs: 'ctrl',
+            templateUrl: 'directive.html'
+          };
+        });
+      </script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="myController as my">
+
+      <h4>Directive open bar</h4>
+      <div some-directive-open></div>
+      <h4>Directive scope isolé</h4>
+      <div some-directive></div>
+      <h4>Directive avancé</h4>
+      <div some-advanced-directive some-object="my.object" some-string="my.string" some-expr="my.method"></div>
+
+      <pre>
+        {{my|json}}
+      </pre>
+
+    </body>
+
+</html>
