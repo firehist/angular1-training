@@ -8,5 +8,9 @@
 Le `http-server` est à lancer depuis le dossier ROOT du projet.
 `cd angular-traning && http-server`
 
-# Mettre à jour (perte des données locales)
+# Mettre à jour
+**/!\ Attention : Le git reset efface TOUTES vos modifications locales**
 `git reset --hard HEAD && git pull --rebase`
+
+Mettre à jour sans perdre les données:
+`git stash && git pull --rebase && git stash pop`
