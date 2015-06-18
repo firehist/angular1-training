@@ -13,12 +13,11 @@
             self.user = 'Loading ...';
             // Simule un appel serveur de 2 secondes
             $timeout(function () {
-              debugger;
               deferred.resolve({
                 firstname: "Benjamin",
                 lastname: "Longearet"
               })
-            }, 2000); 
+            }, 2000);
 
             return deferred.promise;
           };
@@ -26,10 +25,16 @@
           this.getUser = function () {
             retrieveUser()
               .then(function (res) {
-                res.id = '$new';
-                return res;
+                var deferred = $q.defer();
+                // Simule un appel serveur de 2 secondes
+                $timeout(function () {
+                  deferred.resolve(res);
+                }, 1000);
+
+                return deferred.promise;
               })
               .then(function (res) {
+                res.id = '$new';
                 res.groups = ['group1', 'group2'];
                 return res;
               })
