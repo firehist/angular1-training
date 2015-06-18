@@ -1,3 +1,6 @@
+Twitter : [blongearet](twitter.com/blongearet)
+Email : [blongearet@gmail.com](mailto:blongearet@gmail.com)
+
 # Récupérer le projet github en local
 `git clone git@github.com:firehist/angular-training.git`
 
