@@ -1,0 +1,30 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+        app.value('apiUrl', "api.com");
+        app.config(function ($provide) {
+          $provide.decorator('apiUrl', function ($delegate) {
+            return $delegate + '/v2';
+          });
+        });
+        app.controller('MyController', function (apiUrl) {
+          this.data = {
+            value: apiUrl,
+            bool:  apiUrl === 'api.com/v2'
+          };
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>Testing decorator</h4>
+      <b>{{ my.data.value + ' (' + my.data.bool + ')'}}</b>
+
+    </body>
+
+</html>

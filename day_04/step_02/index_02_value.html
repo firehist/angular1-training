@@ -1,0 +1,25 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+  		  app.value('myApiUrl', 'http://api.twitter.com');
+        app.controller('MyController', function (myApiUrl) {
+          this.data = {
+            value: myApiUrl,
+            bool:  myApiUrl === 'http://api.twitter.com'
+          };
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>Testing value</h4>
+      <b>{{ my.data.value + ' (' + my.data.bool + ')'}}</b>
+
+    </body>
+
+</html>

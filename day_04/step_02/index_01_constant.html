@@ -1,0 +1,25 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+        app.constant('API_URL', 'http://api.twitter.com');
+        app.controller('MyController', function (API_URL) {
+          this.data = {
+            value: API_URL,
+            bool:  API_URL === 'http://api.twitter.com'
+          };
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>Testing constant</h4>
+      <b>{{ my.data.value + ' (' + my.data.bool + ')'}}</b>
+
+    </body>
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+        app.provider('apiUrl', function () {
+          var version;
+          return {
+            setVersion: function (v) {
+              version = v;
+            },
+            $get: function () {
+              return url = "api.com/" + version;
+            }
+          };
+        });
+        app.config(function (apiUrlProvider) {
+          apiUrlProvider.setVersion('v2');
+        });
+        app.controller('MyController', function (apiUrl) {
+          this.data = {
+            value: apiUrl,
+            bool:  apiUrl === 'api.com/v2'
+          };
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>Testing provider</h4>
+      <b>{{ my.data.value + ' (' + my.data.bool + ')'}}</b>
+
+    </body>
+
+</html>

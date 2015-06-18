@@ -1,0 +1,30 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+        app.service('userService', function($http) {
+          this.getUser = function () {
+            return $http.get('users.json');
+          };
+        });
+        app.controller('MyController', function (userService) {
+          var self = this;
+
+          userService.getUser().then(function(res) {
+            self.users = res;
+          });
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>Testing service</h4>
+      <pre>{{ my.users | json }}</pre>
+
+    </body>
+
+</html>

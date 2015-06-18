@@ -1,0 +1,55 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('myApp', []);
+
+        app.controller('myController', function MyController($q, $timeout) {
+          var self = this;
+
+          var retrieveUser = function () {
+            var deferred = $q.defer();
+            self.user = 'Loading ...';
+            // Simule un appel serveur de 2 secondes
+            $timeout(function () {
+              debugger;
+              deferred.resolve({
+                firstname: "Benjamin",
+                lastname: "Longearet"
+              })
+            }, 2000); 
+
+            return deferred.promise;
+          };
+
+          this.getUser = function () {
+            retrieveUser()
+              .then(function (res) {
+                res.id = '$new';
+                return res;
+              })
+              .then(function (res) {
+                res.groups = ['group1', 'group2'];
+                return res;
+              })
+              .then(function (res) {
+                self.user = res;
+              });
+          }
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="myController as my">
+
+      <h4>Testing promise</h4>
+      <button type="button" ng-click="my.getUser()">getUser()</button><br />
+      <pre>
+        {{my.user|json}}
+      </pre>
+
+    </body>
+
+</html>
