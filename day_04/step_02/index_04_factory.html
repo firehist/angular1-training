@@ -4,10 +4,16 @@
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
       <script type="text/javascript">
         var app = angular.module('app', []);
-        app.factory('userService', function ($http) {
+        app.factory('userService', function ($q, $http) {
           var _privateUser = [];
           return {
             getUser: function () {
+              // Cached request
+              if (_privateUser.length > 0) {
+                var deferred = $q.defer();
+                deferred.resolve(_privateUser);
+                return deferred.promise;
+              }
               return $http.get('users.json').then(function(res) {
                 _privateUser = res.data;
                 return _privateUser;
