@@ -1,0 +1,51 @@
+<html>
+
+    <head>
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <script type="text/javascript">
+        var app = angular.module('app', []);
+
+        app.service('userService', function($http) {
+          this.getUser = function () {
+            return $http.get('/mock/users.json');
+          };
+          this.getUserError = function () {
+            return $http.get('usersss.json')
+          };
+        });
+
+        app.controller('MyController', function (userService) {
+          var self = this;
+
+          this.getUserError = function () {
+            userService
+              .getUserError()
+              .then(function(res) {
+                self.users = res;
+              }, function (err) {
+                self.users = err;
+                console.log('Bad Request!!!');
+              });
+          };
+
+          this.getUser = function () {
+            userService
+              .getUser()
+              .then(function(res) {
+                self.users = res;
+              });
+          }
+        });
+
+      </script>
+    </head>
+
+    <body ng-app="app" ng-controller="MyController as my">
+
+      <h4>$http usage</h4>
+      <button type="button" ng-click="my.getUser()">SUCCESS</button> <button type="button" ng-click="my.getUserError()">ERROR</button>
+      <pre>{{ my.users | json }}</pre>
+
+    </body>
+
+</html>

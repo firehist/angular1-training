@@ -14,7 +14,7 @@
                 deferred.resolve(_privateUser);
                 return deferred.promise;
               }
-              return $http.get('users.json').then(function(res) {
+              return $http.get('/mock/users.json').then(function(res) {
                 _privateUser = res.data;
                 return _privateUser;
               });
