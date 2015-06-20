@@ -21,12 +21,12 @@ angular
 				controllerAs: 'chat',
 				resolve: {
 					room: function ($route, chatService) {
-						return chatService.getRoomById(parseInt($route.current.params.userId, 10));
+						return chatService.getById($route.current.params.userId);
 					}
 				}
 			});
 	})
-	.controller('ChatsController', function (rooms) {
+	.controller('ChatsController', function (rooms, chatService) {
 		this.rooms = rooms;
 	})
 	.controller('ChatController', function (room) {

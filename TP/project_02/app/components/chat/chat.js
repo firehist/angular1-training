@@ -21,13 +21,19 @@ angular
 				controllerAs: 'chat',
 				resolve: {
 					room: function ($route, chatService) {
-						return chatService.getRoomById(parseInt($route.current.params.userId, 10));
+						return chatService.getById($route.current.params.userId);
 					}
 				}
 			});
 	})
-	.controller('ChatsController', function (rooms) {
+	.controller('ChatsController', function (rooms, chatService) {
+		var self = this;
+
 		this.rooms = rooms;
+		this.create = function create() {
+			chatService.createRoom(self.newChat.name, self.newChat.description);
+			self.newChat.name = self.newChat.description = '';
+		};
 	})
 	.controller('ChatController', function (room) {
 		this.room = room;
