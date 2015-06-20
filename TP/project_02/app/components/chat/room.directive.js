@@ -15,8 +15,7 @@ angular
 				var self = this;
 
 				this.sendMessage = function sendMessage() {
-					debugger;	
-					self.room.messages.push({
+					chatService.addMessage(self.room.$id, {
 						"user": self.message.user,
 						"text": self.message.text,
 						"date": "2014/09/03"

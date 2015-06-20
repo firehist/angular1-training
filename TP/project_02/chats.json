@@ -1,4 +1,4 @@
-[{
+{"chats": [{
   "id": 1,
   "name": "Salt Grass",
   "description": "Iniencephaly",
@@ -2128,4 +2128,4 @@
       "date": "2015/01/06"
     }
   ]
-}]
+}]}

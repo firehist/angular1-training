@@ -1,5 +1,15 @@
 <h3>Liste des chats disponibles</h3>
-<div>
+<p>
+	<i>Nouveau chat :</i> <input type="text" ng-model="chats.newChat.name" placeholder="name" /><input type="text" ng-model="chats.newChat.description" placeholder="description" /> <button type="button" ng-click="chats.create()">Add</button>
+</p>
+<p>
 	<i>Filtrer les résultats :</i> <input type="text" ng-model="searchFilter" />
+</p>
+<div ng-repeat="room in chats.rooms | filter:searchFilter" class="room" style="border: 1px solid black;margin: 2px;padding: 10px;">
+
+	<strong>{{ room.name }}</strong>
+	<div style="float:right;">
+	<a href="javascript:;" ng-click="chats.rooms.$remove(room)">X</a> - <a ng-href="#/chats/{{ room.$id }}">Go to the room</a>
+	</div>
+
 </div>
-<div ng-repeat="room in chats.rooms | filter:searchFilter" room-card="room"></div>
