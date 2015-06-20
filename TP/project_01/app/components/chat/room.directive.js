@@ -14,8 +14,7 @@ angular
 			controller: function($scope, chatService) {
 				var self = this;
 
-				this.sendMessage = function sendMessage() {
-					debugger;	
+				this.sendMessage = function sendMessage() {	
 					self.room.messages.push({
 						"user": self.message.user,
 						"text": self.message.text,
