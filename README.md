@@ -10,7 +10,7 @@ Email : [blongearet@gmail.com](mailto:blongearet@gmail.com)
 
 # Lancement du server HTTP
 Le `http-server` est à lancer depuis le dossier ROOT du projet.
-`cd angular-traning && http-server`
+`cd angular-training && http-server`
 
 # Mettre à jour
 **/!\ Attention : Le git reset efface TOUTES vos modifications locales**

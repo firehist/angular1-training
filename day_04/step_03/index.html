@@ -20,19 +20,20 @@
           this.getUserError = function () {
             userService
               .getUserError()
-              .then(function(res) {
-                self.users = res;
-              }, function (err) {
-                self.users = err;
+              .success(function(data, status, headers, config) {
+                self.users = data;
+              })
+              .error(function(data, status, headers, config) {
                 console.log('Bad Request!!!');
+                self.users = status;
               });
           };
 
           this.getUser = function () {
             userService
               .getUser()
-              .then(function(res) {
-                self.users = res;
+              .success(function(data, status, headers, config) {
+                self.users = data;
               });
           }
         });

@@ -1,0 +1,12 @@
+<div class="room-wrapper">
+	<div class="room-content">
+		<div ng-repeat="message in ctrl.room.messages">
+			<em>{{ message.user }}</em> {{ message.text }}
+		</div>
+	</div>
+	<div class="room-input">
+	    <input type="text" ng-model="ctrl.message.user" placeholder="My name" />
+	    <input type="text" ng-model="ctrl.message.text" placeholder="My Message..." />
+	    <button type="button" ng-click="ctrl.sendMessage()">Send</button>
+	</div>
+</div>

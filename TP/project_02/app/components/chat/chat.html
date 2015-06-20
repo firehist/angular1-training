@@ -1,0 +1,5 @@
+<h3>Liste des chats disponibles</h3>
+<div>
+	<i>Filtrer les résultats :</i> <input type="text" ng-model="searchFilter" />
+</div>
+<div ng-repeat="room in chats.rooms | filter:searchFilter" room-card="room"></div>
