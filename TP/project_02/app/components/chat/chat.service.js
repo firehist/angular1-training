@@ -7,12 +7,6 @@ angular
 		// Load rooms
 		var _rooms = $firebaseArray(FB);
 
-		var _findById = function findById (id) {
-			return _rooms.filter(function (res) {
-				return res.id === id;
-			})[0];
-		};
-
 		return {
 			createRoom: function createRoom(name, description) {
 				_rooms.$add({

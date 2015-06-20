@@ -9,7 +9,7 @@ angular
 
 		var _findById = function findById (id) {
 			return _rooms.filter(function (res) {
-				return res.id === id;
+				return res.$id === parseInt(id, 10);
 			})[0];
 		};
 
@@ -31,11 +31,12 @@ angular
 				}
 				return _roomsPromise.promise;
 			},
-			getRoomById: function getRoomById(id) {
+			getById: function getRoomById(id) {
 				var deferred = $q.defer();
 				this
 					.getRooms()
 					.then(function (res) {
+						debugger;
 						deferred.resolve(_findById(id));
 					});
 
