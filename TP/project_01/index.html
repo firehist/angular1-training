@@ -8,7 +8,7 @@
     <div id="global">
       <div id="entete">Chat application</div>
       <div id="navigation">
-        <a href="#/home">Page d'accueil</a> - <a href="#/chats">Chat</a>  
+        <a href="#/home">Page d'accueil</a> - <a href="#/chat">Chat</a>  
       </div>
       <div id="contenu" ng-view></div>
     </div>
@@ -16,10 +16,13 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app/app.js"></script>
+    <script src="app/components/misc/misc.js"></script>
+    <script src="app/components/misc/ucfirstFilter.js"></script>
     <script src="app/components/home/home.js"></script>
     <script src="app/components/chat/chat.js"></script>
-    <script src="app/components/chat/chat.service.js"></script>
-    <script src="app/components/chat/room.directive.js"></script>
+    <script src="app/components/chat/chatService.js"></script>
+    <script src="app/components/chat/roomDirective.js"></script>
+    <script src="app/components/chat/roomCardDirective.js"></script>
 
   </body>
 </html>

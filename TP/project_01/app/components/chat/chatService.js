@@ -31,7 +31,7 @@ angular
 				}
 				return _roomsPromise.promise;
 			},
-			getById: function getRoomById(id) {
+			getRoomById: function getRoomById(id) {
 				var deferred = $q.defer();
 				this
 					.getRooms()
@@ -41,6 +41,9 @@ angular
 					});
 
 				return deferred.promise;
+			},
+			deleteRoomById: function deleteRoomById(id) {
+				_rooms.splice(_rooms.indexOf(_findById(id)), 1);
 			}
 		};
 	});

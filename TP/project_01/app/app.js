@@ -7,5 +7,5 @@ angular.module('project', [
   'project.chat'
 ])
 .config(function ($routeProvider) {
-    $routeProvider.otherwise('/home');
-  });
+	$routeProvider.otherwise('/home');
+});

@@ -2,7 +2,10 @@
 
 // Create module for home component
 angular
-	.module('project.home', ['ngRoute'])
+	.module('project.home', [
+		'ngRoute',
+		'project.misc'
+	])
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/home', {
@@ -13,4 +16,5 @@ angular
 	})
 	.controller('HomeController', function () {
 		// Any home content
+		this.welcomeMessage = 'bienvenue sur la page d\'accueil !!!';
 	});

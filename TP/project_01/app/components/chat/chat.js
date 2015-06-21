@@ -5,7 +5,7 @@ angular
 	.module('project.chat', ['ngRoute'])
 	.config(function ($routeProvider) {
 		$routeProvider
-			.when('/chats', {
+			.when('/chat', {
 				templateUrl: 'app/components/chat/chat.html',
 				controller: 'ChatsController',
 				controllerAs: 'chats',
@@ -15,13 +15,13 @@ angular
 					}
 				}
 			})
-			.when('/chats/:userId', {
+			.when('/chat/:userId', {
 				templateUrl: 'app/components/chat/chatDetail.html',
 				controller: 'ChatController',
 				controllerAs: 'chat',
 				resolve: {
 					room: function ($route, chatService) {
-						return chatService.getById($route.current.params.userId);
+						return chatService.getRoomById($route.current.params.userId);
 					}
 				}
 			});
