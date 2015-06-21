@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Chat rooms available</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li ng-repeat="room in chatList.rooms">
+      	<h4>{{ room.name }}</h4>
+      	<a class="btn btn-default" ng-href="#/chat/{{ room.$id }}">Let's chat !</a>
+      </li>
+    </ul>
+  </div>
+</div>

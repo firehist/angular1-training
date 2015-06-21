@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Authentication</h3>
+  </div>
+  <div class="panel-body">
+    <button ng-if="!app.authData" type="button" class="btn btn-default" ng-click="app.login()">Login w/ Github</button>
+    <button ng-if="app.authData" type="button" class="btn btn-default" ng-click="app.logout()">Logout</button>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">User informations</h3>
+  </div>
+  <div class="panel-body">
+  	<h4>Repositories</h4>
+  	<ul>
+  		<li ng-repeat="repo in app.repos">
+  			<strong>{{repo.full_name}}</strong>
+  			<p>
+  				<i>{{repo.description || '-- no description --'}}</i>
+  			</p>
+  			<p>
+  				<button ng-if="!repo.exist" type="button" class="btn btn-default" ng-click="app.createRoom(repo)">Create room</button>
+  				<button ng-if="repo.exist" type="button" class="btn btn-default">Go to the room</button>
+  			</p>
+  		</li>
+  	</ul>
+  	<pre>
+    	{{ app.authData | json }}
+    </pre>
+  </div>
+</div>
