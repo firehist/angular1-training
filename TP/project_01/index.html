@@ -2,15 +2,6 @@
   <head>
     <link type="text/css" rel="stylesheet" href="style/base.css" />
   	<link type="text/css" rel="stylesheet" href="style/app.css" />
-
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="app/app.js"></script>
-    <script src="app/components/home/home.js"></script>
-    <script src="app/components/chat/chat.js"></script>
-    <script src="app/components/chat/chat.service.js"></script>
-    <script src="app/components/chat/room.directive.js"></script>
-
   </head>
   <body ng-app="project">
 
@@ -21,6 +12,14 @@
       </div>
       <div id="contenu" ng-view></div>
     </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/components/home/home.js"></script>
+    <script src="app/components/chat/chat.js"></script>
+    <script src="app/components/chat/chat.service.js"></script>
+    <script src="app/components/chat/room.directive.js"></script>
 
   </body>
 </html>
