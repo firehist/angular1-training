@@ -1,1 +1,3 @@
-misc.js
+angular.module("app.misc", [
+	"firebase"
+]);

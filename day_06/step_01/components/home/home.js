@@ -1,5 +1,7 @@
 angular
-	.module("app.home", [])
+	.module("app.home", [
+		"app.misc"
+	])
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/home', {
@@ -8,7 +10,7 @@ angular
 				controllerAs: 'app'
 			});
 	})
-	.controller("HomeController", function(AuthService, $http, RoomService) {
+	.controller("HomeController", function(AuthService, $http, $location, RoomService) {
 		var app = this;
 
 		var initRepo = function initRepo (repos) {
@@ -22,10 +24,13 @@ angular
 
 		AuthService.$onAuth(function (authData) {
 			app.authData = authData;
-			debugger;
-			$http.get(app.authData.github.cachedUserProfile.repos_url).success(function (repos) {
-				initRepo(repos);
-			});
+			if (app.authData) {
+				$http.get(app.authData.github.cachedUserProfile.repos_url).success(function (repos) {
+					initRepo(repos);
+				});
+			} else {
+				initRepo([]);
+			}
 		});
 
 		app.login = function () {
@@ -42,6 +47,10 @@ angular
 			RoomService.createRoom(repo.name).then(function (res) {
 				console.log('Room created for ' + repo.name);
 			});
+		};
+
+		app.goToRoom = function (repo) {
+			$location.url('/chat/' + repo.name);
 		};
 
 	});

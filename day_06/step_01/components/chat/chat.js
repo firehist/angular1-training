@@ -1,5 +1,9 @@
 angular
-	.module("app.chat", ["ngRoute"])
+	.module("app.chat", [
+		"ngRoute",
+		"firebase",
+		"app.misc"
+	])
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/chat', {

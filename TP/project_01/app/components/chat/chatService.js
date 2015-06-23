@@ -36,7 +36,6 @@ angular
 				this
 					.getRooms()
 					.then(function (res) {
-						debugger;
 						deferred.resolve(_findById(id));
 					});
 

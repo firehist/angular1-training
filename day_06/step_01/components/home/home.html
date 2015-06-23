@@ -22,7 +22,7 @@
   			</p>
   			<p>
   				<button ng-if="!repo.exist" type="button" class="btn btn-default" ng-click="app.createRoom(repo)">Create room</button>
-  				<button ng-if="repo.exist" type="button" class="btn btn-default">Go to the room</button>
+  				<button ng-if="repo.exist" ng-click="app.goToRoom(repo)" type="button" class="btn btn-default">Go to the room</button>
   			</p>
   		</li>
   	</ul>

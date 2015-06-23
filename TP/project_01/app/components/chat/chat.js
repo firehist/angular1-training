@@ -2,7 +2,9 @@
 
 // Create module for user component
 angular
-	.module('project.chat', ['ngRoute'])
+	.module('project.chat', [
+		'ngRoute'
+	])
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/chat', {

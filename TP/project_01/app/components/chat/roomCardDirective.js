@@ -19,7 +19,6 @@ angular
 			},
 			controllerAs: 'ctrl',
 			link: function (scope, element) {
-				element.find()
 			}
 		}
 	});
