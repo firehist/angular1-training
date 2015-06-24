@@ -3,7 +3,15 @@ Twitter : [blongearet](twitter.com/blongearet)
 Email : [blongearet@gmail.com](mailto:blongearet@gmail.com)
 
 # Récupérer le projet github en local
-`git clone git@github.com:firehist/angular-training.git`
+`git clone https://github.com/firehist/angular-training`
+
+# Installation des dépendences
+## NodeJS & NPM
+Site web : https://nodejs.org/
+Installer NodeJS en cliquant sur "Install".
+NodeJS installe automatiquement NPM.
+## bower, http-server
+`npm install -g bower http-server`
 
 # Installation du projet
 `npm install && bower install`
