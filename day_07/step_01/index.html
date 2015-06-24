@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animations</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+	.card-item {
+		float: left;
+		overflow: hidden;
+		display: block;
+		border: 1px solid #CCC;
+		padding: 10px;
+		height: 100px;
+		width: 100px;
+		color: white;
+	}
+	.card-item.card-animation-css.ng-enter-stagger {
+		transition-delay: 0.3s;
+		animation-delay: 0.3s;
+	}
+	.card-item.card-animation-css.ng-animate {
+		transition: all .3s linear;
+	}
+	.card-item.card-animation-css.ng-enter {
+		opacity: 0;
+		transform: translateX(-1000%);
+	}
+	.card-item.card-animation-css.ng-enter.ng-enter-active {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	.card-item.card-animation-css.ng-leave {
+		opacity: 1;
+		transform: scale(0);
+	}
+	.card-item.card-animation-css.ng-leave.ng-leave-active {
+		opacity: 0;
+		transform: scale(10);
+	}
+
+
+	.record {
+	  display:block;
+	  font-size:20px;
+	}
+	.profile {
+	  background:black;
+	  color:white;
+	  font-size:100px;
+	}
+	.view-container {
+	  position:relative;
+	  height: 400px;
+	}
+
+	/* ngAnimation */
+	.view-container > .view.ng-animate {
+	  position:absolute;
+	  top:0;
+	  left:0;
+	  width:100%;
+	  min-height:500px;
+	}
+
+	/* ng-enter -> ng-enter-active */
+	.view.ng-enter {
+	  transition:0.5s linear all;
+	  transform:translateX(100%);
+	}
+	.view.ng-enter.ng-enter-active {
+	  transform:translateX(0%);
+	}
+
+	/* ng-leave -> ng-leave-active */
+	.view.ng-leave {
+	  transition:0.5s linear all;
+	  transform:translateX(0%);
+	}
+	.view.ng-leave.ng-leave-active {
+	  transform:translateX(-100%);
+	}
+
+	/* ng-anchor -> ng-anchor-out OR ng-anchor-in */
+	.record.ng-anchor {
+	  transition:.5s linear all;
+	}
+	.record.ng-anchor-out {
+	  background:red;
+	}
+	.record.ng-anchor-in {
+	  background:yellow;
+	}
+	</style>
+
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script src="../../bower_components/angular-route/angular-route.js"></script>
+	<script src="../../bower_components/angular-animate/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	angular
+		.module('app', ['ngAnimate', 'ngRoute'])
+		.config(function ($routeProvider) {
+			$routeProvider
+				.when('/home', {
+					controller: function($scope) {
+						this.records = [];
+						for(var i=0;i<10;i++) {
+							this.records.push({
+								id: i,
+								title: 'My title ' + i
+							});
+						}
+					},
+					controllerAs: 'home',
+					templateUrl: 'home.html'
+				})
+				.when('/profile/:profileId', {
+					controller: function($routeParams) {
+						this.id = parseInt($routeParams.profileId, 10);
+						this.title = 'My title ' + $routeParams.profileId;
+					},
+					controllerAs: 'profile',
+					templateUrl: 'profile.html'
+				})
+				.otherwise('/home');
+		})
+		.controller('AppController', function AppController ($http) {
+			var appController = this;
+
+			appController.users = [];
+
+			appController.removeAll = function removeAll() {
+				appController.users.splice(0, appController.users.length);
+			};
+			appController.removeByIndex = function removeByIndex(index) {
+				appController.users.splice(index, 1);
+			};
+			appController.addMore = function addMore() {
+				$http.get('http://api.randomuser.me/?results=10').success(function (data) {
+					data.results.forEach(function (item) {
+						appController.users.push(item);
+					});
+				});
+			};
+			appController.getBackgroundImage = function getBackgroundImage(user) {
+				return 'background:transparent url(' + user.picture.medium + ') top left no-repeat';
+			};
+
+			appController.addMore();
+		})
+		.animation('.card-animation-js', function () {
+			return {
+				enter: function (element, done) {
+					$(element).fadeIn(1000, done);
+				},
+				move: function (element, done) {
+					$(element).fadeIn(1000, done);
+				},
+				leave: function (element, done) {
+					$(element).fadeOut(1000, done);
+				}
+			}
+		});
+	</script>
+</head>
+<body ng-app="app"  ng-controller="AppController as app">
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Actions</h3>
+	  </div>
+	  <div class="panel-body">
+	   	<button type="button" ng-click="app.addMore()" class="btn btn-default">Add more</button>
+	   	<button type="button" ng-click="app.removeAll()" class="btn btn-default">Remove all</button>
+	   	<button type="button" ng-class="{'btn-default': !animation, 'btn-success': animation}" ng-click="animation = !animation" class="btn btn-default">Animation</button>
+	   	<button type="button" ng-class="{'btn-default': !animationJS, 'btn-success': animationJS}" ng-click="animationJS = !animationJS" class="btn btn-primary">Animation {{animationJS ? 'JS' : 'CSS'}}</button>
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Users</h3>
+	  </div>
+	  <div class="panel-body">
+	    
+
+	  	<div class="card-wrapper">
+			<span ng-repeat="item in app.users" ng-click="app.removeByIndex($index)" class="card-item" ng-class="{'card-animation-js': animation && animationJS, 'card-animation-css': animation && !animationJS}" style="{{app.getBackgroundImage(item.user)}}">
+				{{item.user.name.first + ' ' + item.user.name.last}}
+			</span>
+		</div>
+
+
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Routing</h3>
+	  </div>
+	  <div class="panel-body">
+	  	 <div class="view-container">
+		    <div ng-view class="view"></div>
+		  </div>
+	  </div>
+	</div>
+
+
+	
+
+</body>
+</html>

@@ -6,7 +6,7 @@
     
     <div style="height: 400px;" class="chat-messages">
     	<div ng-repeat="message in chatRoom.messages">
-    		<em>{{message.user}}</em> : {{message.message}}
+    		<em>{{message.user}}</em> : <input type="text" ng-change="chatRoom.changeMessage($index)" ng-model="message.message" />
     	</div>
     </div>
     <div>

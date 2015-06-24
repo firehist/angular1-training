@@ -6,6 +6,9 @@ angular
 			this.FB_messages = FB.child('room-messages');
 			this.rooms = $firebaseArray(this.FB_rooms);
 		};
+		RoomService.prototype.deleteRoom = function deleteRoom(roomId) {
+			this.rooms.$remove(roomId);
+		};
 		RoomService.prototype.parseRoomName = function parseRoomName (roomName) {
 			return roomName.replace(/[.#$\[\]]/, '');
 		}
@@ -29,8 +32,7 @@ angular
 			return deferred.promise;
 		};
 		RoomService.prototype.getRooms = function getRooms () {
-			var rooms = $firebaseArray(this.FB_rooms);
-			return rooms.$loaded();
+			return this.rooms;
 		};
 		RoomService.prototype.getMessageByRoomName = function getRoomMessageByName (roomId) {
 			var message = $firebaseArray(this.FB_messages.child(this.parseRoomName(roomId)));

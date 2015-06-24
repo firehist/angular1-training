@@ -7,6 +7,7 @@
       <li ng-repeat="room in chatList.rooms">
       	<h4>{{ room.name }}</h4>
       	<a class="btn btn-default" ng-href="#/chat/{{ room.$id }}">Let's chat !</a>
+        <button type="button" ng-click="chatList.deleteRoom($index)" class="btn btn-default">Delete</button>
       </li>
     </ul>
   </div>
