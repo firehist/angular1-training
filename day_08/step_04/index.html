@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+
+	<!-- Inclusion des fichiers CSS -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Inclusion des fichiers JS -->
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script src="../../bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript">
+	angular
+		.module('app', [])
+		.controller('AppController', function AppController ($http) {
+			var appController = this;
+
+			appController.data = {
+				"username": "firehist"
+			};
+		})
+		.directive('asyncUsername', function($q, $timeout) {
+			return {
+				// A besoin de ng-model sur le même noeud DOM
+				require: 'ngModel',
+				link: function (scope, element, attrs, ngModelCtrl) {
+					// Travailler avec ctrl
+					// ngModelCtrl = ngModelController
+					ngModelCtrl.$asyncValidators.username = function(modelValue, viewValue) {
+						var value = modelValue || viewValue;
+						var deferred = $q.defer();
+						$timeout(function() {
+							var usernames = ['firehist', 'toto', 'tartoprune'];
+							if (usernames.indexOf(value) > -1) {
+								deferred.reject();
+							} else {
+								deferred.resolve();
+							}
+						}, 2000);
+						return deferred.promise;
+					};
+
+				}
+			}
+		});		
+	</script>
+</head>
+<!-- Chargement de l'application et du controller -->
+<body ng-app="app"  ng-controller="AppController as app">
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Directive $asyncValidators</h3>
+	  </div>
+	  <div class="panel-body">
+	   	
+	  	<form name="myForm" novalidate>
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" name="username" ng-model="app.data.username" async-username class="form-control" id="username">
+				<span ng-show="myForm.$pending.username">En cours de vérification serveur ...</span>
+			</div>
+		</form>
+
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Form object</h3>
+	  </div>
+	  <div class="panel-body">
+	    
+	  	<pre>
+	  		{{myForm | json}}
+	  	</pre>
+
+
+	  </div>
+	</div>
+
+	
+
+</body>
+</html>

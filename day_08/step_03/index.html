@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+
+	<!-- Inclusion des fichiers CSS -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Inclusion des fichiers JS -->
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script src="../../bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript">
+	angular
+		.module('app', [])
+		.controller('AppController', function AppController ($http) {
+			var appController = this;
+
+			appController.data = {
+				"fullname": "Benjamin Longearet <firehist>"
+			};
+		})
+		.directive('fullnameValidator', function() {
+			return {
+				// A besoin de ng-model sur le même noeud DOM
+				require: 'ngModel',
+				link: function (scope, element, attrs, ngModelCtrl) {
+					// Travailler avec ctrl
+					// ngModelCtrl = ngModelController
+					ngModelCtrl.$validators.fullname = function(modelValue, viewValue) {
+						var value = modelValue || viewValue;
+						return /^[a-zA-Z]+ [a-zA-Z]+ <[^>]+>$/.test(value);
+					};
+
+				}
+			}
+		});		
+	</script>
+</head>
+<!-- Chargement de l'application et du controller -->
+<body ng-app="app"  ng-controller="AppController as app">
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Directive $validators</h3>
+	  </div>
+	  <div class="panel-body">
+	   	
+	  	<form name="myForm" novalidate>
+			<div class="form-group">
+				<label for="myField">"firstname lastname &lt;pseudo&gt;"</label>
+				<input type="text" name="fullname" ng-model="app.data.fullname" fullname-validator class="form-control" id="myField">
+			</div>
+		</form>
+
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Form object</h3>
+	  </div>
+	  <div class="panel-body">
+	    
+	  	<pre>
+	  		{{myForm | json}}
+	  	</pre>
+
+
+	  </div>
+	</div>
+
+	
+
+</body>
+</html>
