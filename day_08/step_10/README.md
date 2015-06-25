@@ -6,8 +6,11 @@
 
 ## Les patterns de fichier
 ../../bower_components/angular/angular.js
+
 app/**/*.js
+
 ../../bower_components/angular-mocks/angular-mocks.js
+
 test/unit/**/*.spec.js'
 
 # Lancer les tests
