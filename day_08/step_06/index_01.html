@@ -15,8 +15,6 @@
 		.controller('AppController', function AppController ($http) {
 			var appController = this;
 
-			var myFirstname = "benjamin";
-
 			appController.data = {
 				"email": ""
 			};
@@ -41,7 +39,7 @@
 					ng-model="app.data.email"
 					class="form-control"
 					id="email"
-					minlength="5"
+					minlength="20"
 					maxlength="40"
 					required>
 

@@ -23,7 +23,10 @@
 		})
 		.directive('formError', function() {
 			return {
-				templateUrl: 'ngmessages.html'
+				templateUrl: 'ngmessages.html',
+				scope: {
+					myField: '=on'
+				}
 			}
 		});		
 	</script>
@@ -50,8 +53,7 @@
 					maxlength="40"
 					required>
 
-					<div form-error ng-messages="myForm.email.$error" style="color:maroon" role="alert">
-					</div>
+					<form-error on="myForm.email" style="color:maroon" role="alert"></form-error>
 			</div>
 		</form>
 

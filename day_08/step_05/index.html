@@ -8,7 +8,6 @@
 
 	<!-- Inclusion des fichiers JS -->
 	<script src="../../bower_components/angular/angular.js"></script>
-	<script src="../../bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript">
 	angular
 		.module('app', [])
@@ -27,7 +26,7 @@
 				}
 			};
 			appController.ngModelOption = {
-				updateOn: 'blur',
+				updateOn: 'default blur',
 				debounce: {  // Peut être un nombre en ms
 					default: 300,
 					blur: 0
@@ -56,6 +55,7 @@
 					name="username"
 					ng-model="app.data.username"
 					ng-model-options="app.ngModelOption"
+					minlength="2"
 					class="form-control"
 					id="username">
 			</div>

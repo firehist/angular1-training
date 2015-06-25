@@ -8,7 +8,6 @@
 
 	<!-- Inclusion des fichiers JS -->
 	<script src="../../bower_components/angular/angular.js"></script>
-	<script src="../../bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript">
 	angular
 		.module('app', [])
@@ -53,8 +52,8 @@
 				<input type="text" name="myField" ng-model="app.data.date" my-date class="form-control" id="myField">
 			</div>
 			<div class="form-group">
-				<label for="myField">My date w/o custom</label>
-				<input type="text" name="myField" ng-model="app.data.date" class="form-control" id="myField">
+				<label for="myFieldWithout">My date w/o custom</label>
+				<input type="text" name="myFieldWithout" ng-model="app.data.date" class="form-control" id="myFieldWithout">
 			</div>
 		</form>
 

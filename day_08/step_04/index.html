@@ -19,7 +19,23 @@
 				"username": "firehist"
 			};
 		})
-		.directive('asyncUsername', function($q, $timeout) {
+		.factory('userService', function($q, $timeout) {
+			return {
+				checkUsername: function(value) {
+					var deferred = $q.defer();
+					$timeout(function() {
+						var usernames = ['firehist', 'toto', 'tartoprune'];
+						if (usernames.indexOf(value) > -1) {
+							deferred.reject();
+						} else {
+							deferred.resolve();
+						}
+					}, 2000);
+					return deferred.promise
+				}
+			};
+		})
+		.directive('asyncUsername', function(userService) {
 			return {
 				// A besoin de ng-model sur le même noeud DOM
 				require: 'ngModel',
@@ -28,16 +44,7 @@
 					// ngModelCtrl = ngModelController
 					ngModelCtrl.$asyncValidators.username = function(modelValue, viewValue) {
 						var value = modelValue || viewValue;
-						var deferred = $q.defer();
-						$timeout(function() {
-							var usernames = ['firehist', 'toto', 'tartoprune'];
-							if (usernames.indexOf(value) > -1) {
-								deferred.reject();
-							} else {
-								deferred.resolve();
-							}
-						}, 2000);
-						return deferred.promise;
+						return userService.checkUsername(value);
 					};
 
 				}
@@ -59,6 +66,7 @@
 				<label for="username">Username</label>
 				<input type="text" name="username" ng-model="app.data.username" async-username class="form-control" id="username">
 				<span ng-show="myForm.$pending.username">En cours de vérification serveur ...</span>
+				<span ng-show="myForm.$error.username">En erreur</span>
 			</div>
 		</form>
 
