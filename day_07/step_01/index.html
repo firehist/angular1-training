@@ -63,31 +63,31 @@
 	}
 
 	/* ng-enter -> ng-enter-active */
-	.view.ng-enter {
+	.animate .view.ng-enter {
 	  transition:0.5s linear all;
 	  transform:translateX(100%);
 	}
-	.view.ng-enter.ng-enter-active {
+	.animate .view.ng-enter.ng-enter-active {
 	  transform:translateX(0%);
 	}
 
 	/* ng-leave -> ng-leave-active */
-	.view.ng-leave {
+	.animate .view.ng-leave {
 	  transition:0.5s linear all;
 	  transform:translateX(0%);
 	}
-	.view.ng-leave.ng-leave-active {
+	.animate .view.ng-leave.ng-leave-active {
 	  transform:translateX(-100%);
 	}
 
 	/* ng-anchor -> ng-anchor-out OR ng-anchor-in */
-	.record.ng-anchor {
+	.animate .record.ng-anchor {
 	  transition:.5s linear all;
 	}
-	.record.ng-anchor-out {
+	.animate .record.ng-anchor-out {
 	  background:red;
 	}
-	.record.ng-anchor-in {
+	.animate .record.ng-anchor-in {
 	  background:yellow;
 	}
 	</style>
@@ -125,8 +125,13 @@
 				})
 				.otherwise('/home');
 		})
-		.controller('AppController', function AppController ($http) {
+		.controller('AppController', function AppController ($http, $timeout) {
 			var appController = this;
+
+			appController.isAppReady = false;
+			$timeout(function() {
+				appController.isAppReady = true;
+			},500);
 
 			appController.users = [];
 
@@ -164,7 +169,7 @@
 		});
 	</script>
 </head>
-<body ng-app="app"  ng-controller="AppController as app">
+<body ng-app="app"  ng-controller="AppController as app" ng-class="{animate: app.isAppReady}">
 
 	<div class="panel panel-default">
 	  <div class="panel-heading">
