@@ -1,15 +1,20 @@
+// Declare myApp application with ngRoute dependency
 var myApp = angular.module('myApp', ['ngRoute']);
-
+// Configure myApp module
 myApp.config(function($routeProvider) {
+	// Configure $routeProvider
+	// https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
 	$routeProvider
+		// Route "/" will launch home template with HomeCtrl
 		.when('/', {
 			templateUrl : 'tpl/home.html',
-			controller  : 'HomeController',
+			controller  : 'HomeCtrl',
 			controllerAs: 'home'
 		})
+		// Route "/users" will launch users template with UsersCtrl
 		.when('/users', {
 			templateUrl : 'tpl/users.html',
-			controller  : 'UsersController',
+			controller  : 'UsersCtrl',
 			controllerAs: 'users',
 			resolve: {
 				users: function ($http) {
@@ -19,10 +24,12 @@ myApp.config(function($routeProvider) {
 				}
 			}
 		})
+		// Route "/user/id" will launch user template with UserCtrl
 		.when('/user/:id?', {
 			templateUrl : 'tpl/user.html',
-			controller  : 'UserController',
+			controller  : 'UserCtrl',
 			controllerAs: 'user',
+			// Resolve is a must have before go to the view
 			resolve: {
 				user: function ($route) {
 					return {
@@ -32,32 +39,34 @@ myApp.config(function($routeProvider) {
 				}
 			}
 		})
+		// Default route
 		.otherwise('/');
 });
-
-myApp.controller('HomeController', HomeController);
-function HomeController() {
+// Controllers HomeCtrl, UsersCtrl and UserCtrl
+myApp.controller('HomeCtrl', HomeCtrl);
+function HomeCtrl() {
 }
 
-myApp.controller('UsersController', UsersController);
-function UsersController(users) {
+myApp.controller('UsersCtrl', UsersCtrl);
+function UsersCtrl(users) {
 	this.data = users
 }
 
-myApp.controller('UserController', UserController);
-function UserController(user) {
+myApp.controller('UserCtrl', UserCtrl);
+function UserCtrl(user) {
 	this.data = user
 }
-
+// Directive userDetail with an isolated scope
 myApp.directive('userDetail', UserDetailDirective);
 function UserDetailDirective () {
 	return {
         templateUrl: 'tpl/userDetail.directive.html',
         scope: true,
         controller: function () {
-
+        	// Empty controller
         },
         controllerAs: 'userDetail',
+        // Bind from external scope to controller
         bindToController: {
         	'user': '='
         }
