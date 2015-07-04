@@ -1,12 +1,17 @@
 <html>
 
     <head>
+      <!-- Bower dependencies -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
       <script type="text/javascript">
-        var app = angular.module('app', []);
+        // our myApp angularJS Module
+        var app = angular.module('myApp', []);
+        // Create constant
         app.constant('API_URL', 'http://api.twitter.com');
-        app.controller('MyController', function (API_URL) {
-          this.data = {
+        // Create controller with dependency : API_URL (constant)
+        app.controller('MyCtrl', function (API_URL) {
+          var vm = this;
+          vm.data = {
             value: API_URL,
             bool:  API_URL === 'http://api.twitter.com'
           };
@@ -15,7 +20,8 @@
       </script>
     </head>
 
-    <body ng-app="app" ng-controller="MyController as my">
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <body ng-app="myApp" ng-controller="MyCtrl as my">
 
       <h4>Testing constant</h4>
       <b>{{ my.data.value + ' (' + my.data.bool + ')'}}</b>

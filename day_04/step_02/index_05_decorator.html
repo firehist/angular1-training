@@ -1,17 +1,25 @@
 <html>
 
     <head>
+      <!-- Bower dependencies -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
       <script type="text/javascript">
+        // our myApp angularJS Module
         var app = angular.module('app', []);
+        // Create value apiUrl
         app.value('apiUrl', "api.com");
+        // Create config to decorate this value
         app.config(function ($provide) {
+          // Decorate with $delegate
           $provide.decorator('apiUrl', function ($delegate) {
             return $delegate + '/v2';
           });
         });
+        // Create a MyCtrl controller with dep userService
         app.controller('MyController', function (apiUrl) {
-          this.data = {
+          var vm = this;
+
+          vm.data = {
             value: apiUrl,
             bool:  apiUrl === 'api.com/v2'
           };
@@ -19,7 +27,8 @@
 
       </script>
     </head>
-
+    
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
     <body ng-app="app" ng-controller="MyController as my">
 
       <h4>Testing decorator</h4>

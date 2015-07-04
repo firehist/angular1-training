@@ -1,26 +1,30 @@
 <html>
 
     <head>
+      <!-- Bower dependencies -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
       <script type="text/javascript">
-        var app = angular.module('app', []);
+        // our myApp angularJS Module
+        var app = angular.module('myApp', []);
+        // Create service with $http dependecy
         app.service('userService', function($http) {
           this.getUser = function () {
             return $http.get('/mock/users.json');
           };
         });
-        app.controller('MyController', function (userService) {
-          var self = this;
-
+        // Create controller with dependency : API_URL (constant)
+        app.controller('MyCtrl', function (userService) {
+          var vm = this;
           userService.getUser().then(function(res) {
-            self.users = res;
+            vm.users = res;
           });
         });
 
       </script>
     </head>
 
-    <body ng-app="app" ng-controller="MyController as my">
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <body ng-app="myApp" ng-controller="MyCtrl as my">
 
       <h4>Testing service</h4>
       <pre>{{ my.users | json }}</pre>

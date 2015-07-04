@@ -1,25 +1,32 @@
 <html>
 
     <head>
+      <!-- Bower dependencies -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
       <script type="text/javascript">
+        // our myApp angularJS Module
         var app = angular.module('app', []);
+        // Create a provider apiUrl
         app.provider('apiUrl', function () {
           var version;
           return {
             setVersion: function (v) {
               version = v;
             },
+            // will provide the final service after configuration phase
             $get: function () {
               return url = "api.com/" + version;
             }
           };
         });
+        // Configure my app module
         app.config(function (apiUrlProvider) {
           apiUrlProvider.setVersion('v2');
         });
+        // Use configured provider apiUrl
         app.controller('MyController', function (apiUrl) {
-          this.data = {
+          var vm = this;
+          vm.data = {
             value: apiUrl,
             bool:  apiUrl === 'api.com/v2'
           };
@@ -27,7 +34,8 @@
 
       </script>
     </head>
-
+    
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
     <body ng-app="app" ng-controller="MyController as my">
 
       <h4>Testing provider</h4>
