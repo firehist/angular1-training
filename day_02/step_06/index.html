@@ -1,17 +1,21 @@
 <html>
 
     <head>
+      <!-- ../../bower_components required bower install -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
       <script type="text/javascript">
-        var myApp = angular.module('myApp', []);
-
-        myApp.controller('MyController', MyController);
+        // Create a module AngularJS called "myApp"
+        // Chain controller creation
+        angular.module('myApp', []).controller('MyController', MyController);
         function MyController($filter) {
-
-        	this.numberValue = 12345,67
-        	this.stringValue = 'AngularJS is awesome!'
-        	this.arrayValue = ['first', 'second', 'third', 'last', 'omg that\'s awesome', 'another', 'r value :D']
-        	this.objValue = {
+          // Create ViewModel reference (vm)
+          var vm = this;
+          // Expose numberValue, stringValue, arrayValue and objValue on ViewModel
+        	vm.numberValue = 12345,67
+        	vm.stringValue = 'AngularJS is awesome!'
+        	vm.arrayValue = ['first', 'second', 'third', 'last', 'omg that\'s awesome', 'another', 'r value :D']
+        	vm.objValue = {
         		"users": [
         			{firstname: 'Benjamin', lastname: 'Longearet'},
         			{firstname: 'Alexandre', lastname: 'Lacoche'},
@@ -19,14 +23,16 @@
         			{firstname: 'Julien', lastname: 'Vidal'}
         		]
         	}
-          
         }
       </script>
     </head>
 
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <!-- ng-controller allows the view to access to the controller MyController under the name my -->
     <body ng-app="myApp" ng-controller="MyController as my">
 
       <h4>| currency</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/currency">https://docs.angularjs.org/api/ng/filter/currency</a></em></h5>
       <div>
       	<input type="number" ng-model="my.numberValue" aria-label="my.numberValue"> <br>
   		default currency symbol ($): <span id="currency-default">{{my.numberValue | currency}}</span><br>
@@ -35,6 +41,7 @@
       </div>
 
       <h4>| date</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/date">https://docs.angularjs.org/api/ng/filter/date</a></em></h5>
       <div>
       	<span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
     	<span>{{1288323623006 | date:'medium'}}</span><br>
@@ -43,6 +50,9 @@
       </div>
 
       <h4>| filter && | limitTo && | orderBy</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/filter">https://docs.angularjs.org/api/ng/filter/filter</a></em></h5>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/limitTo">https://docs.angularjs.org/api/ng/filter/limitTo</a></em></h5>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/orderBy">https://docs.angularjs.org/api/ng/filter/orderBy</a></em></h5>
       filter by: <input type="text" ng-model="customFilter" /><br/>
       limit to: <input type="number" ng-model="customLimit" /><br/>
       Order by: <select ng-model="customOrderByAttr">

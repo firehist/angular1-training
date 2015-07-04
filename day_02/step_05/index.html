@@ -1,19 +1,26 @@
 <html>
 
     <head>
+      <!-- ../../bower_components required bower install -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
       <script type="text/javascript">
+        // Create a module AngularJS called "myApp"
+        // Chain controller creation
         angular.module('myApp', []).controller('MyController', MyController);
         function MyController() {
+          // Empty controller
         }
       </script>
     </head>
 
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
     <body ng-app="myApp">
-
+      <!-- ng-controller allows the view to access to the controller MyController under the name my -->
       <div ng-controller="MyController as my">
-
+        <!-- Create a form with name "myForm" will expose "vm.myForm" variable -->
       	<form name="myForm">
+          <!-- Create field with ng-model bind to the "myForm" form -->
       		Email : <input type="email"
     				name="myEmail"
     				minlength="5"
@@ -21,8 +28,10 @@
     				ng-model="myEmail"
     				required />
 
+          <!-- Ask for validation through myForm.myEmail field -->
   			  <div ng-if="myForm.myEmail.$invalid">There is an error with the field</div>
 
+          <!-- debug purpose -->
     			<pre>
     				{{myForm | json}}
     			</pre>

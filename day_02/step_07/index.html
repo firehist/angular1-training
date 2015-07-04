@@ -1,79 +1,100 @@
 <html>
 
     <head>
+      <!-- ../../bower_components required bower install -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
       <script type="text/javascript">
+        // Create a module AngularJS called "myApp"
         var myApp = angular.module('myApp', []);
-
+        // Create MyController in "myApp" angular module
         myApp.controller('MyController', MyController);
         function MyController($filter) {
-
-        	this.arrValue = [
-    			'benjamin',
-    			'alexandre',
-    			'yannick',
-    			'julien'
-    		]
+          // Create ViewModel reference (vm)
+          var vm = this;
+          // Expose arrValue to ViewModel
+          vm.arrValue = [
+            'benjamin',
+            'alexandre',
+            'yannick',
+            'julien'
+          ]
           
         }
 
+        // Create filter "custom" in "myApp" angular module
         myApp.filter('custom', CustomFilter);
         function CustomFilter() {
-        	return function(input) {
-        		try {
-        			return input[0].toUpperCase() + input.slice(1);
-        		} catch (e) {
-        			return input;
-        		}
-        	};
+          // input is the filter input value
+          return function(input) {
+            // Transform this value and return a new value
+            try {
+              // "bonjour" => "Bonjour" (uppercase the first character)
+              return input[0].toUpperCase() + input.slice(1);
+            } catch (e) {
+              return input;
+            }
+          };
         }
-
+        // Create filter "separator" in "myApp" angular module
         myApp.filter('separator', CustomSepFilter);
         function CustomSepFilter() {
-        	return function(input, separator) {
-	        	separator = separator || ', ';
-	        	try {
-	        		return input.join(separator);
-        		} catch (e) {
-        			return input;
-        		}
-        	};
+          return function(input, separator) {
+            // Transform input by split it with given separator (, by default)
+            separator = separator || ', ';
+            try {
+              // ["bonjour", "Benjamin"] => "bonjour, Benjamin"
+              return input.join(separator);
+            } catch (e) {
+              return input;
+            }
+          };
         }
-
+        // Create filter "reverse" in "myApp" angular module
         myApp.filter('reverse', reverseFilter);
         function reverseFilter() {
-        	return function (input) {
-        		try {
-        			return input.split('').reverse().join('');
-        		} catch (e) {
-        			return input;
-        		}
-        	}
+          return function (input) {
+            // Transform input to get reversed string
+            try {
+              // "bonjour" => "ruojnob"
+              return input.split('').reverse().join('');
+            } catch (e) {
+              return input;
+            }
+          }
         }
       </script>
     </head>
 
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
     <body ng-app="myApp" ng-controller="MyController as my">
 
       <h4>| custom</h4>
+      <h5><em>"bonjour" => "Bonjour" (uppercase the first character)</em></h5>
       <div>
-      	<input type="text" ng-model="customText" />
-      	{{ customText | custom }}
+        <input type="text" ng-model="customText" />
+        {{ customText | custom }}
       </div>
       <br />
 
       <h4>| separator</h4>
+      <h5><em>["bonjour", "Benjamin"] => "bonjour, Benjamin"</em></h5>
       <div>
-      	<input type="text" ng-model="separatorText" />
-	    {{ my.arrValue }}<br />
-	    {{ my.arrValue | separator:separatorText }}
-	  </div>
+        <label>Separator :</label>
+        <input type="text" ng-model="separatorText" placeholder=", " />
+      </div>
+      <div>
+        Default value : {{ my.arrValue }}<br />
+        Filtered value : {{ my.arrValue | separator:separatorText }}
+      </div>
+    </div>
       <br/>
 
       <h4>| reverse</h4>
+      <h5><em>"bonjour" => "ruojnob"</em></h5>
       <div>
-      	<input type="text" ng-model="reverseText" />
-      	{{ reverseText | reverse }}
+        <input type="text" ng-model="reverseText" />
+        {{ reverseText | reverse }}
       </div>
 
     </body>

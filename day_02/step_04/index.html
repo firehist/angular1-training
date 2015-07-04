@@ -1,40 +1,50 @@
 <html>
 
     <head>
+      <!-- ../../bower_components required bower install -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
       <script type="text/javascript">
+        // Create a module AngularJS called "myApp"
+        // Chain controller creation
         angular.module('myApp', []).controller('MyController', MyController);
         function MyController() {
-          var self = this; 
+          // Create ViewModel reference (vm)
+          var vm = this; 
+          // Expose ifCondition, showCondition, color, imgUrl, message & selection variables to ViewModel
+          // Expose getMyStringClass variables to ViewModel
+          vm.ifCondition = true
+          vm.showCondition = true
+          vm.imgUrl = "http://ranger.gamebanana.com/img/ico/sprays/amazing_horse_spray_2.png";
+          vm.message = ""
+          vm.selection = ""
+          vm.color = 'red';
 
-          this.ifCondition = true
-          this.showCondition = true
-
-          this.color = 'red';
-          this.getMyStringClass = function() {
-            return self.color;
+          vm.getMyStringClass = function() {
+            return vm.color;
           }
-          this.imgUrl = "http://ranger.gamebanana.com/img/ico/sprays/amazing_horse_spray_2.png";
-          this.message = ""
-          this.selection = ""
         }
       </script>
     </head>
 
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
     <body ng-app="myApp">
-
+    <!-- ng-controller allows the view to access to the controller MyController under the name my -->
       <div ng-controller="MyController as my">
         <h4>ng-if</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngIf">https://docs.angularjs.org/api/ng/directive/ngIf</a></em></h5>
         <input type="checkbox" ng-model="my.ifCondition" />
         <p ng-if="my.ifCondition">paragraph</p>
         <hr/>
 
         <h4>ng-show</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngShow">https://docs.angularjs.org/api/ng/directive/ngShow</a></em></h5>
         <input type="checkbox" ng-model="my.showCondition" />
         <p ng-show="my.showCondition">paragraph</p>
         <hr/>
 
         <h4>ng-class</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngClass">https://docs.angularjs.org/api/ng/directive/ngClass</a></em></h5>
         <select ng-model="my.color">
           <option value="red">Red</option>
           <option value="orange">Orange</option>
@@ -44,11 +54,15 @@
         <hr/>
 
         <h4>ng-src</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngSrc">https://docs.angularjs.org/api/ng/directive/ngSrc</a></em></h5>
         <p>Here is an image w/ ng-src <img ng-src="{{my.imgUrl}}" /></p>
         <p>Here is an image w/o ng-src <img src="{{my.imgUrl}}" /></p>
         <hr/>
 
         <h4>ng-copy, ng-paste, ng-cut</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngCopy">https://docs.angularjs.org/api/ng/directive/ngCopy</a></em></h5>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngPaste">https://docs.angularjs.org/api/ng/directive/ngPaste</a></em></h5>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngCut">https://docs.angularjs.org/api/ng/directive/ngCut</a></em></h5>
         <textarea
           ng-copy="my.message = 'Copy detected'"
           ng-paste="my.message = 'Paste detected'"
@@ -58,6 +72,7 @@
         <hr/>
 
         <h4>ng-switch</h4>
+        <h5><em><a href="https://docs.angularjs.org/api/ng/directive/ngSwitch">https://docs.angularjs.org/api/ng/directive/ngSwitch</a></em></h5>
         <button type="button" ng-click="my.selection = 'first'">First</button> <button type="button" ng-click="my.selection = 'second'">Second</button> <button type="button" ng-click="my.selection = ''">Default</button>
         <div ng-switch on="my.selection">
           <div ng-switch-when="first">First DIV</div>
