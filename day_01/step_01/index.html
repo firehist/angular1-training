@@ -1,12 +1,16 @@
 <html>
 
     <head>
+      <!-- ../../bower_components required bower install -->
       <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
     </head>
 
+    <!-- ng-app will declare the root level of our angularJS Application -->
     <body ng-app>
 
+      <!-- ng-init will evaluate an angularJS expression -->
       <div ng-init="fullname = 'Benjamin Longearet'">
+        <!-- {{ angular-expression }} will evaluate an AngularJS Expression, dual binding it and display the result -->
         Fullname: {{ fullname }} 
       </div>
 
