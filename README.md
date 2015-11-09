@@ -28,3 +28,14 @@ Le `http-server` est à lancer depuis le dossier ROOT du projet.
 
 Mettre à jour sans perdre les données:
 `git stash && git pull --rebase && git stash pop`
+
+# Créer un nouveau projet avec `npm` & `bower`
+```
+mkdir my-project && cd my-project
+npm init
+bower init
+bower install --save jquery angularjs
+mkdir src && cd src
+touch index.html
+touch app.js
+```
