@@ -17,6 +17,7 @@
           // Expose addLocation method to ViewModel
           vm.addLocation = function addLocation () {
             vm.locations.push(vm.location);
+            vm.location = '';
           };
         }
       </script>

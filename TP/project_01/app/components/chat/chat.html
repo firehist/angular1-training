@@ -1,5 +1,0 @@
-<h3>Liste des salles disponibles</h3>
-<p>
-	<i>Filtrer les résultats :</i> <input type="text" ng-model="searchFilter" /> ({{ chats.rooms.length }} résultat(s))
-</p>
-<div ng-repeat="room in chats.rooms | filter:searchFilter" class="room" style="border: 1px solid black;margin: 2px;padding: 10px;" room-card="room"></div>
