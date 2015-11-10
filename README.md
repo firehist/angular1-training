@@ -12,15 +12,15 @@ Email : [blongearet@gmail.com](mailto:blongearet@gmail.com)
 Site web : https://nodejs.org/
 Installer NodeJS en cliquant sur "Install".
 NodeJS installe automatiquement NPM.
-## bower, http-server
-`npm install -g bower http-server`
+## bower, live-server
+`npm install -g bower live-server`
 
 # Installation du projet
 `npm install && bower install`
 
 # Lancement du server HTTP
-Le `http-server` est à lancer depuis le dossier ROOT du projet.
-`cd angular-training && http-server`
+Le `live-server` est à lancer depuis le dossier ROOT du projet.
+`cd angular-training && live-server`
 
 # Mettre à jour
 **/!\ Attention : Le git reset efface TOUTES vos modifications locales**
