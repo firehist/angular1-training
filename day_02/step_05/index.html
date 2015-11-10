@@ -14,7 +14,8 @@
         <!-- Create a form with name "myForm" will expose "vm.myForm" variable -->
       	<form name="myForm">
           <!-- Create field with ng-model bind to the "myForm" form -->
-      		Email : <input type="email"
+      		Email : <input
+            type="email"
     				name="myEmail"
     				minlength="5"
     				maxlength="100"
@@ -22,7 +23,7 @@
     				required />
 
           <!-- Ask for validation through myForm.myEmail field -->
-  			  <div ng-if="myForm.myEmail.$invalid">There is an error with the field</div>
+  			  <div ng-if="myForm.myEmail.$invalid && myForm.myEmail.$dirty">There is an error with the field</div>
 
           <!-- debug purpose -->
     			<pre>
