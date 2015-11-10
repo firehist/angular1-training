@@ -6,6 +6,8 @@ angular.module('myApp', [])
 function WeatherCtrl($scope) {
   // Create ViewModel reference (vm)
   var vm = this;
+
+  vm.location = '';
   // Expose locations variable to ViewModel
   vm.locations = ["Montpellier, France", "Genève, Suisse"];
   // Expose addLocation method to ViewModel
