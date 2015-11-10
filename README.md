@@ -39,3 +39,6 @@ mkdir src && cd src
 touch index.html
 touch app.js
 ```
+
+# Sublime Text 3 Plugins
+http://www.hongkiat.com/blog/sublime-text-plugins/
