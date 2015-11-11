@@ -1,0 +1,80 @@
+<html>
+
+    <head>
+      <!-- Bower dependencies -->
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our application -->
+      <script type="text/javascript">
+        // myApp AngularJS Module
+        var myApp = angular.module('myApp', []);
+        // myCtrl controller
+        myApp.controller('myCtrl', function () {
+          var vm = this;
+          vm.object = {
+            firstname: 'Benjamin',
+            lastname: 'Longearet'
+          };
+          vm.string = 'String Benjamin'
+          vm.method = function () {
+            console.log('my method');
+          };
+        });
+        // Directive without scope (work in parent scope)
+        myApp.directive('someDirectiveOpen', function () {
+          return {
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someDirectiveOpen';
+            },
+            controllerAs: 'ctrl',
+            template: '<div>{{ctrl.name}}</div>'
+          };
+        });
+        // Directive with a scope "inherite from parent"
+        myApp.directive('someDirective', function () {
+          return {
+            scope: {},
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someDirective';
+            },
+            controllerAs: 'ctrl',
+            template: '<div>{{ctrl.name}}</div>'
+          };
+        });
+        // Directive with isolated scope and value coming from parent controller
+        myApp.directive('someAdvancedDirective', function () {
+          return {
+            scope: {},
+            bindToController: {
+              someObject: '=',
+              someString: '@',
+              someExpr: '&'
+            },
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someAdvancedDirective';
+            },
+            controllerAs: 'ctrl',
+            templateUrl: 'directive.html'
+          };
+        });
+      </script>
+    </head>
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <body ng-app="myApp" ng-controller="myCtrl as my">
+
+      <h4>Directive open bar</h4>
+      <div some-directive-open></div>
+      <h4>Directive scope isolé</h4>
+      <div some-directive></div>
+      <h4>Directive avancé</h4>
+      <div some-advanced-directive some-object="my.object" some-string="my.string" some-expr="my.method"></div>
+
+      <pre>
+        {{my|json}}
+      </pre>
+
+    </body>
+
+</html>
