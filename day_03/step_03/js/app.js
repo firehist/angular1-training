@@ -63,7 +63,15 @@ function UserDetailDirective () {
         templateUrl: 'tpl/userDetail.directive.html',
         scope: true,
         controller: function () {
-        	// Empty controller
+       		var vm = this;
+       		vm.tempUser = {
+       			first_name: this.user.first_name,
+       			last_name: this.user.last_name
+       		};
+       		vm.updateUserInformation = function () {
+       			vm.user.first_name = vm.tempUser.first_name;
+       			vm.user.last_name = vm.tempUser.last_name;
+       		};
         },
         controllerAs: 'userDetail',
         // Bind from external scope to controller
