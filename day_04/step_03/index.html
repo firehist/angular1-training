@@ -9,11 +9,11 @@
         // Create userService service with dep $http
         app.service('userService', function($http) {
           // Expose getUser method
-          vm.getUser = function () {
+          this.getUser = function () {
             return $http.get('/mock/users.json');
           };
           // Expose getUserError method
-          vm.getUserError = function () {
+          this.getUserError = function () {
             return $http.get('usersss.json')
           };
         });
