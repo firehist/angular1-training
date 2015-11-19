@@ -11,6 +11,7 @@ angular
 		};
 
 		vm.getDisplayName = Users.getDisplayName;
+		vm.getGravatar = Users.getGravatar;
 
 		vm.logout = function() {
 			Auth.$unauth();

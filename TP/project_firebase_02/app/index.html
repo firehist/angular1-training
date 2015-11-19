@@ -14,6 +14,11 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
+    <div style="position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-50px;z-index: -1;">
+        <p><img src="images/gears.svg" /></p>
+        <p class="text-info">Chargement en cours</p>
+    </div>
 
     <ui-view></ui-view>
 
@@ -26,19 +31,21 @@
     <script src="bower_components/angular-md5/angular-md5.js"></script>
 
     <script src="auth/_auth.js"></script>
-    <script src="auth/auth.factory.js"></script>
-    <script src="auth/auth.controller.js"></script>
+    <script src="auth/authService.js"></script>
+    <script src="auth/authCtrl.js"></script>
 
     <script src="user/_user.js"></script>
     <script src="user/user.factory.js"></script>
     <script src="user/user.controller.js"></script>
 
     <script src="channel/_channel.js"></script>
-    <script src="channel/channel.factory.js"></script>
-    <script src="channel/channels.controller.js"></script>
+    <script src="channel/channelsService.js"></script>
+    <script src="channel/messagesService.js"></script>
+    <script src="channel/channelsCtrl.js"></script>
+    <script src="channel/messagesCtrl.js"></script>
 
     <script src="home/_home.js"></script>
-    <script src="home/home.controller.js"></script>
+    <script src="home/homeCtrl.js"></script>
 
     <script src="app.js"></script>
 </body>

@@ -13,14 +13,17 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'home/home.html',
-        controller: 'HomeCtrl as home',
+        controller: 'HomeCtrl as homeCtrl',
         resolve: {
           profile: function(Users, Auth, $state){
-            return Auth.$requireAuth().then(function(auth){
-              return Users.getProfile(auth.uid).$loaded().then(function (profile) {
-                $state.go('channels');
-                return profile;
-              })
+            Auth.$requireAuth().then(function(auth){
+                return Users.getProfile(auth.uid).$loaded()
+                  .then(function (profile) {
+                    $state.go('channels');
+                    return profile;
+                  })
+              }, function(error){
+              return;
             });
           }
         }
@@ -31,7 +34,7 @@ angular
         controller: 'ChannelsCtrl as channelsCtrl',
         resolve: {
           channels: function (Channels){
-            return Channels.all.$loaded();
+            return Channels.$loaded();
           },
           profile: function ($state, Auth, Users){
             return Auth.$requireAuth().then(function(auth){
@@ -51,22 +54,19 @@ angular
       .state('channels.create', {
         url: '/create',
         templateUrl: 'channel/create.html',
-        controller: 'ChannelsCtrl as channelsCtrl',
+        controller: 'ChannelsCtrl as channelsCtrl'
+      })
+      .state('channels.messages', {
+        url: '/{channelId}/messages',
+        templateUrl: 'channel/messages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
         resolve: {
-          channels: function (Channels){
-            return Channels.all.$loaded();
+          messages: function(Messages, $stateParams){
+            return Messages.forChannel($stateParams.channelId).$loaded();
           },
-          profile: function ($state, Auth, Users){
-            return Auth.$requireAuth().then(function(auth){
-              return Users.getProfile(auth.uid).$loaded().then(function (profile){
-                if(profile.displayName){
-                  return profile;
-                } else {
-                  $state.go('user');
-                }
-              });
-            }, function(error){
-              $state.go('home');
+          channelName: function($stateParams, Channels){
+            return Channels.$loaded().then(function (channels) {
+              return '#'+Channels.$getRecord($stateParams.channelId).name;
             });
           }
         }

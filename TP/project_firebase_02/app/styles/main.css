@@ -1,5 +1,6 @@
-body {
+html,body {
   padding: 0;
+  height:100%;
 }
 
 .page-wrapper {
@@ -7,6 +8,8 @@ body {
   margin-right: auto;
   margin-left: auto;
   padding:15px;
+  background-color: white;
+  height: 100%;
 }
 
 .page-wrapper .logo-img {
@@ -20,6 +23,7 @@ body {
   left:0;
   height:100%;
   width:100%;
+  background-color: white;
 }
 
 .sidebar {
@@ -146,7 +150,6 @@ body {
   display:inline-block;
   vertical-align: top;
   height:100%;
-  width:80%;
   overflow-y:scroll;
   padding:55px 15px 65px 15px;
 }

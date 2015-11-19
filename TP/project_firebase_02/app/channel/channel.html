@@ -9,7 +9,7 @@
       <div class="list-head">Channels</div>
 
       <div class="channel" ng-repeat="channel in channelsCtrl.channels">
-        <a># {{ channel.name }}</a>
+        <a ui-sref="channels.messages({channelId: channel.$id})" ui-sref-active="selected"># {{ channel.name }}</a>
       </div>
 
       <div class="channel create">
