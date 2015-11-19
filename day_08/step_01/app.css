@@ -1,0 +1,86 @@
+.card-item {
+	float: left;
+	overflow: hidden;
+	display: block;
+	border: 1px solid #CCC;
+	padding: 10px;
+	height: 100px;
+	width: 100px;
+	color: white;
+}
+.card-item.card-animation-css.ng-enter-stagger {
+	transition-delay: 0.3s;
+	animation-delay: 0.3s;
+}
+.card-item.card-animation-css.ng-animate {
+	transition: all .3s linear;
+}
+.card-item.card-animation-css.ng-enter {
+	opacity: 0;
+	transform: translateX(-1000%);
+}
+.card-item.card-animation-css.ng-enter.ng-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+}
+.card-item.card-animation-css.ng-leave {
+	opacity: 1;
+	transform: scale(0);
+}
+.card-item.card-animation-css.ng-leave.ng-leave-active {
+	opacity: 0;
+	transform: scale(10);
+}
+
+
+.record {
+  display:block;
+  font-size:20px;
+}
+.profile {
+  background:black;
+  color:white;
+  font-size:100px;
+}
+.view-container {
+  position:relative;
+  height: 400px;
+}
+
+/* ngAnimation */
+.view-container > .view.ng-animate {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  min-height:500px;
+}
+
+/* ng-enter -> ng-enter-active */
+.animate .view.ng-enter {
+  transition:0.5s linear all;
+  transform:translateX(100%);
+}
+.animate .view.ng-enter.ng-enter-active {
+  transform:translateX(0%);
+}
+
+/* ng-leave -> ng-leave-active */
+.animate .view.ng-leave {
+  transition:0.5s linear all;
+  transform:translateX(0%);
+}
+.animate .view.ng-leave.ng-leave-active {
+  transform:translateX(-100%);
+}
+
+/* ng-anchor -> ng-anchor-out OR ng-anchor-in */
+.animate .record.ng-anchor {
+  transition:.5s linear all;
+}
+.animate .record.ng-anchor-out {
+  background:red;
+}
+.animate .record.ng-anchor-in {
+  background:yellow;
+}

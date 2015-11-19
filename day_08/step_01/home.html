@@ -1,0 +1,8 @@
+<h2>Welcome home :D</h2>
+<p>Click on a link below</p>
+<a class="record"
+   ng-href="#/profile/{{record.id}}"
+   ng-animate-ref="{{record.id}}"
+   ng-repeat="record in home.records">
+  {{record.title}}
+</a>
