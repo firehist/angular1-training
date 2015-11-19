@@ -7,15 +7,15 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Inclusion des fichiers JS -->
-	<script src="../../bower_components/angular/angular.js"></script>
 	<script src="../../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../../bower_components/angular/angular.js"></script>
 	<script type="text/javascript">
 	angular
 		.module('app', [])
 		.controller('AppController', function AppController ($http) {
-			var appController = this;
+			var vm = this;
 
-			appController.data = {
+			vm.data = {
 				"first_name": "",
 				"last_name": "",
 				"email": "",
@@ -31,6 +31,7 @@
 				link: function (scope, element, attrs, ctrl) {
 					// Travailler avec ctrl
 					// ctrl = ngModelController
+					console.log('Directive asyncEmail loaded');
 				}
 			}
 		});		

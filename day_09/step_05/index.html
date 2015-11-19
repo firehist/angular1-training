@@ -12,11 +12,11 @@
 	angular
 		.module('app', [])
 		.controller('AppController', function AppController ($http) {
-			var appController = this;
+			var vm = this;
 
 			var myFirstname = "benjamin";
 
-			appController.data = {
+			vm.data = {
 				"username": "firehist",
 				"firstname": function (newVal) {
 					if (newVal) {
@@ -25,14 +25,14 @@
 					return myFirstname;
 				}
 			};
-			appController.ngModelOption = {
+			vm.ngModelOption = {
 				updateOn: 'default blur',
 				debounce: {  // Peut être un nombre en ms
 					default: 300,
 					blur: 0
 				}
 			};
-			appController.ngModelOptionFirstname = {
+			vm.ngModelOptionFirstname = {
 				getterSetter: true
 			};
 		});		
@@ -63,7 +63,7 @@
 				<label for="username">firstname</label>
 				<input
 					type="text"
-					name="username"
+					name="firstname"
 					ng-model="app.data.firstname"
 					ng-model-options="app.ngModelOptionFirstname"
 					class="form-control"

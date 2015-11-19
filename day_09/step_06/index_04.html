@@ -7,17 +7,31 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Inclusion des fichiers JS -->
+	<script src="../../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../../bower_components/angular/angular.js"></script>
 	<script src="../../bower_components/angular-messages/angular-messages.js"></script>
 	<script type="text/javascript">
 	angular
 		.module('app', ['ngMessages'])
 		.controller('AppController', function AppController ($http) {
-			var vm = this;
+			var appController = this;
 
-			vm.data = {
+			var myFirstname = "benjamin";
+
+			appController.data = {
 				"email": ""
 			};
+		})
+		.directive('input', function() {
+			return {
+				require: 'ngModel',
+				restrict: 'E',
+				scope: {},
+				link: function (scope, element, attrs, ngModelCtrl) {
+					scope.myField = ngModelCtrl;
+					$(element).insertAfter('<h4>test</h4>')
+				}
+			}
 		});		
 	</script>
 </head>
@@ -26,7 +40,7 @@
 
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Directive ngMessages</h3>
+	    <h3 class="panel-title">Directive ngMessages w/ directive template</h3>
 	  </div>
 	  <div class="panel-body">
 	   	
@@ -39,16 +53,11 @@
 					ng-model="app.data.email"
 					class="form-control"
 					id="email"
-					minlength="20"
+					minlength="5"
 					maxlength="40"
 					required>
 
-				<div ng-messages="myForm.email.$error" style="color:maroon" role="alert">
-					<div ng-message="email">Il faut saisir un email valide</div>
-					<div ng-message="required">Veuillez renseigner le champs</div>
-					<div ng-message="minlength">Le champs est trop court!</div>
-					<div ng-message="maxlength">Le champs est trop long!</div>
-				</div>
+					<form-error on="myForm.email" style="color:maroon" role="alert"></form-error>
 			</div>
 		</form>
 
