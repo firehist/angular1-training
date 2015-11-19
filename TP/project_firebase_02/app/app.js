@@ -5,6 +5,7 @@ angular
     'ui.router',
     'chatApplication.auth',
     'chatApplication.home',
+    'chatApplication.channel',
     'chatApplication.user'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -14,9 +15,58 @@ angular
         templateUrl: 'home/home.html',
         controller: 'HomeCtrl as home',
         resolve: {
-          profile: function(Users, Auth){
+          profile: function(Users, Auth, $state){
             return Auth.$requireAuth().then(function(auth){
-              return Users.getProfile(auth.uid).$loaded();
+              return Users.getProfile(auth.uid).$loaded().then(function (profile) {
+                $state.go('channels');
+                return profile;
+              })
+            });
+          }
+        }
+      })
+      .state('channels', {
+        url: '/channels',
+        templateUrl: 'channel/channel.html',
+        controller: 'ChannelsCtrl as channelsCtrl',
+        resolve: {
+          channels: function (Channels){
+            return Channels.all.$loaded();
+          },
+          profile: function ($state, Auth, Users){
+            return Auth.$requireAuth().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded().then(function (profile){
+                if(profile.displayName){
+                  return profile;
+                } else {
+                  $state.go('user');
+                }
+              });
+            }, function(error){
+              $state.go('home');
+            });
+          }
+        }
+      })
+      .state('channels.create', {
+        url: '/create',
+        templateUrl: 'channel/create.html',
+        controller: 'ChannelsCtrl as channelsCtrl',
+        resolve: {
+          channels: function (Channels){
+            return Channels.all.$loaded();
+          },
+          profile: function ($state, Auth, Users){
+            return Auth.$requireAuth().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded().then(function (profile){
+                if(profile.displayName){
+                  return profile;
+                } else {
+                  $state.go('user');
+                }
+              });
+            }, function(error){
+              $state.go('home');
             });
           }
         }

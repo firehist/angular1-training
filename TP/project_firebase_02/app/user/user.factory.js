@@ -12,7 +12,11 @@ angular
         return users.$getRecord(uid).displayName;
       },
       getGravatar: function(uid){
-        return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
+        var user = users.$getRecord(uid);
+        if (user && user.emailHash) {
+          return '//www.gravatar.com/avatar/' + user.emailHash;
+        }
+        return '';
       },
       all: users
     };
