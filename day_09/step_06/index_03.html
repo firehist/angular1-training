@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+
+	<!-- Inclusion des fichiers CSS -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Inclusion des fichiers JS -->
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script src="../../bower_components/angular-messages/angular-messages.js"></script>
+	<script type="text/javascript">
+	angular
+		.module('app', ['ngMessages'])
+		.controller('AppController', function AppController ($http) {
+			var appController = this;
+
+			var myFirstname = "benjamin";
+
+			appController.data = {
+				"email": ""
+			};
+		})
+		.directive('formError', function() {
+			return {
+				templateUrl: 'ngmessages.html',
+				scope: {
+					myField: '=on'
+				}
+			}
+		});		
+	</script>
+</head>
+<!-- Chargement de l'application et du controller -->
+<body ng-app="app"  ng-controller="AppController as app">
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Directive ngMessages w/ directive template</h3>
+	  </div>
+	  <div class="panel-body">
+	   	
+	  	<form name="myForm" novalidate>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input
+					type="email"
+					name="email"
+					ng-model="app.data.email"
+					class="form-control"
+					id="email"
+					minlength="5"
+					maxlength="40"
+					required>
+
+					<form-error on="myForm.email" style="color:maroon" role="alert"></form-error>
+			</div>
+		</form>
+
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Form object</h3>
+	  </div>
+	  <div class="panel-body">
+	    
+	  	<pre>
+	  		{{myForm | json}}
+	  	</pre>
+
+
+	  </div>
+	</div>
+
+	
+
+</body>
+</html>

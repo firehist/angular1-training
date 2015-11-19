@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+
+	<!-- Inclusion des fichiers CSS -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Inclusion des fichiers JS -->
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script type="text/javascript">
+	angular
+		.module('app', [])
+		.controller('AppController', function AppController ($http) {
+			var appController = this;
+
+			appController.data = {
+				"date": 183030048
+			};
+		})
+		.directive('myDate', function() {
+			return {
+				// A besoin de ng-model sur le même noeud DOM
+				require: 'ngModel',
+				link: function (scope, element, attrs, ngModelCtrl) {
+					// Travailler avec ctrl
+					// ctrl = ngModelController
+					ngModelCtrl.$formatters.push(function(value) {
+						return new Date(value);
+					});
+
+					ngModelCtrl.$parsers.push(function(value) {
+						return new Date(value).getTime();
+					});
+				}
+			}
+		});		
+	</script>
+</head>
+<!-- Chargement de l'application et du controller -->
+<body ng-app="app"  ng-controller="AppController as app">
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Directive $formatters / $parsers</h3>
+	  </div>
+	  <div class="panel-body">
+	   	
+	  	<form name="myForm" novalidate>
+			<div class="form-group">
+				<label for="myField">My date</label>
+				<input type="text" name="myField" ng-model="app.data.date" my-date class="form-control" id="myField">
+			</div>
+			<div class="form-group">
+				<label for="myFieldWithout">My date w/o custom</label>
+				<input type="text" name="myFieldWithout" ng-model="app.data.date" class="form-control" id="myFieldWithout">
+			</div>
+		</form>
+
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Form object</h3>
+	  </div>
+	  <div class="panel-body">
+	    
+	  	<pre>
+	  		{{myForm | json}}
+	  	</pre>
+
+
+	  </div>
+	</div>
+
+	
+
+</body>
+</html>
