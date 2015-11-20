@@ -27,7 +27,6 @@ angular
 					'<h3>Directive</h3>' +
 					'<div ng-repeat="message in notifierCtrl.messages">{{message.txt}}</div>' +
 				'</div>',
-			require: 'ngModel',
 			controllerAs: 'notifierCtrl',
 			controller: function (Notify) {
 				var vm = this;
