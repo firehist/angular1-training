@@ -14,6 +14,9 @@
     </div>
   </div>
 </div>
+<div class="message-wrap" ng-if="messages.Ctrl.messages.length === 0">
+    No message here ! Be first.
+</div>
 
 <form class="message-form" ng-submit="messagesCtrl.sendMessage()">
   <div class="input-group">
