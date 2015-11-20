@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Thu Jun 25 2015 11:33:02 GMT+0200 (CEST)
+// Generated on Fri Nov 20 2015 11:30:09 GMT+0100 (CET)
 
 module.exports = function(config) {
   config.set({
@@ -15,10 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../../bower_components/angular/angular.js',
-      'app/**/*.js',
-      '../../bower_components/angular-mocks/angular-mocks.js',
-      'test/unit/**/*.spec.js'
+        '../../bower_components/angular/angular.js',
+        'app/**/*.js',
+        '../../bower_components/angular-mocks/angular-mocks.js',
+        'test/unit/**/*.spec.js'
     ],
 
 
@@ -63,6 +63,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultanous
+    concurrency: Infinity
   })
 }

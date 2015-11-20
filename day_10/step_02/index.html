@@ -5,9 +5,11 @@
 
 	<!-- Inclusion des fichiers CSS -->
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../bower_components/jquery-ui/themes/flick/jquery-ui.css" rel="stylesheet">
 
 	<!-- Inclusion des fichiers JS -->
 	<script src="../../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../../bower_components/jquery-ui/jquery-ui.js"></script>
 	<script src="../../bower_components/angular/angular.js"></script>
 	<script src="app.js"></script>
 	</script>
@@ -25,13 +27,16 @@
 	  	<form name="myForm" ng-submit="appCtrl.addMessage()" novalidate>
 			<div class="form-group">
 				<label for="inputMessage">Message</label>
-				<input type="text" name="message" ng-model="appCtrl.message" class="form-control" id="inputMessage" placeholder="Put your message here">
+				<input datepicker ng-model="appCtrl.date" class="form-control" id="inputMessage" placeholder="Put your date here" />
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
 
 	  </div>
 	</div>
+
+	<h3>Date in appCtrl</h3>
+	<pre>{{appCtrl.date}}</pre>
 
 </body>
 </html>
