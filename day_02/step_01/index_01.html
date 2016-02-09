@@ -1,0 +1,41 @@
+<html>
+
+    <head>
+      <!-- ../../bower_components required bower install -->
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
+      <script type="text/javascript" src="index_01.js"></script>
+    </head>
+
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <body ng-app="myApp">
+
+      <!-- ng-controller allows the view to access to the controller WeatherCtrl under the name weather -->
+      <div ng-controller="WeatherCtrl as weather">
+        <p>
+          <label for="location">Location: </label>
+          <!-- ng-model will bind the input text with the controller variable -->
+          <input id="location" type="text" ng-model="weather.location" placeholder="Put your location"></input>
+          <!-- ng-click will evaluate AngularJS Expression when user click -->
+          <button type="button" ng-click="weather.addLocation()">Add location</button>
+        </p>
+        <h4>Locations are:</h4>
+        <ul>
+          <!-- ng-repeat will iterate over each element in weather.locations like a forEach in javascript -->
+          <li ng-repeat="scopedLocationVar in weather.locations">
+            <!-- ng-repeat expose $index, $last, $first, $odd, $even variable in the scope -->
+            <!-- ng-click execute weather.removeLocation method -->
+            <!-- /!\ ng-model will not work properly : prototype inheritance -->
+            {{$index + " -> "}} <input type="text" ng-model="scopedLocationVar" /> - <button type="button" ng-click="weather.removeLocation($index)">Remove</button>
+          </li>
+        </ul>
+
+        <!-- debug usage -->
+        <p>
+          {{weather.locations|json}}
+        </p>
+      </div>
+
+    </body>
+
+</html>

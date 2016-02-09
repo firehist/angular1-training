@@ -1,0 +1,63 @@
+<html>
+
+    <head>
+      <!-- ../../bower_components required bower install -->
+      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- Our AngularJS Application source code -->
+      <script type="text/javascript" src="index.js"></script>
+    </head>
+
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <!-- ng-controller allows the view to access to the controller MyController under the name my -->
+    <body ng-app="myApp" ng-controller="MyController as my">
+
+      <h4>| currency</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/currency">https://docs.angularjs.org/api/ng/filter/currency</a></em></h5>
+      <div>
+      	<input type="number" ng-model="my.numberValue" aria-label="my.numberValue"> <br>
+  		default currency symbol ($): <span id="currency-default">{{my.numberValue | currency}}</span><br>
+  		custom currency identifier (USD$): <span id="currency-custom">{{my.numberValue | currency:"USD$"}}</span>
+  		no fractions (0): <span id="currency-no-fractions">{{my.numberValue | currency:"USD$":0}}</span>
+      </div>
+
+      <h4>| date</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/date">https://docs.angularjs.org/api/ng/filter/date</a></em></h5>
+      <div>
+      	<span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
+    	<span>{{1288323623006 | date:'medium'}}</span><br>
+		<span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
+   		<span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span><br>
+      </div>
+
+      <h4>| filter && | limitTo && | orderBy</h4>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/filter">https://docs.angularjs.org/api/ng/filter/filter</a></em></h5>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/limitTo">https://docs.angularjs.org/api/ng/filter/limitTo</a></em></h5>
+      <h5><em><a href="https://docs.angularjs.org/api/ng/filter/orderBy">https://docs.angularjs.org/api/ng/filter/orderBy</a></em></h5>
+      filter by: <input type="text" ng-model="customFilter" /><br/>
+      limit to: <input type="number" ng-model="customLimit" /><br/>
+      Order by: <select ng-model="customOrderByAttr">
+      	<option value="firstname" selected>firstname</option>
+      	<option value="lastname">lastname</option>
+      </select> <select ng-model="customOrderReverse">
+      	<option value="1" selected>True</option>
+      	<option value="0">False</option>
+      </select>
+      <div>
+      	<ul>
+      		<li ng-repeat="user in my.objValue.users | filter:customFilter | limitTo:customLimit | orderBy:customOrderByAttr:customOrderReverse">
+      			{{user.firstname + ' ' + user.lastname}}
+      		</li>
+      	</ul>
+      </div>
+
+      <h4>| json</h4>
+      {{my.objValue}}
+      <pre>
+      {{my.objValue | json}}
+      </pre>
+
+      <h4>| </h4>
+
+    </body>
+
+</html>
