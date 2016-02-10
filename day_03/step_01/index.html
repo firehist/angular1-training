@@ -1,8 +1,8 @@
 <html>
 
     <head>
-      <!-- ../../bower_components required bower install -->
-      <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
+      <!-- ../../node_modules required npm install -->
+      <script type="text/javascript" src="../../node_modules/angular/angular.js"></script>
       <!-- Our AngularJS Application source code -->
       <script type="text/javascript" src="index.js"></script>
     </head>
@@ -29,7 +29,7 @@
    		<span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span><br>
       </div>
 
-      <h4>| filter && | limitTo && | orderBy</h4>
+      <h4>| filter and | limitTo and | orderBy</h4>
       <h5><em><a href="https://docs.angularjs.org/api/ng/filter/filter">https://docs.angularjs.org/api/ng/filter/filter</a></em></h5>
       <h5><em><a href="https://docs.angularjs.org/api/ng/filter/limitTo">https://docs.angularjs.org/api/ng/filter/limitTo</a></em></h5>
       <h5><em><a href="https://docs.angularjs.org/api/ng/filter/orderBy">https://docs.angularjs.org/api/ng/filter/orderBy</a></em></h5>
@@ -44,7 +44,7 @@
       </select>
       <div>
       	<ul>
-      		<li ng-repeat="user in my.objValue.users | filter:customFilter | limitTo:customLimit | orderBy:customOrderByAttr:customOrderReverse">
+      		<li ng-repeat="user in my.objValue.users | filter:customFilter | limitTo:customLimit | orderBy:customOrderByAttr:my.getBool(customOrderReverse)">
       			{{user.firstname + ' ' + user.lastname}}
       		</li>
       	</ul>

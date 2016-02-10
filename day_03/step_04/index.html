@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+      <!-- Dependencies from npm -->
+      <script src="../../node_modules/angular/angular.js"></script>
+      <script src="../../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+      <!-- Our application -->
+      <script src="js/app.js"></script>
+      <!-- Some style -->
+      <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
+    <!-- myApp application -->
+    <body ng-app="myApp">
+
+      <h3>My title</h3>
+      <a ui-sref="home">home</a> - <a ui-sref="user.index">user</a> - <a ui-sref="user.detail({id:1})">user : 1</a> - <a ui-sref="user.detail({id:2})">user : 2</a> - <a ui-sref="user.detail({id:2})">user : 3</a> - <a ui-sref="user.detail({id:4})">user : 4</a>
+
+      <div ui-view></div>
+
+    </body>
+
+</html>

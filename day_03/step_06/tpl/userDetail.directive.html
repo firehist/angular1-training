@@ -1,0 +1,15 @@
+<!-- Template userDefailt.directive.html -->
+<!-- ViewModel information coming from directive controller -->
+<div>
+	<h5>{{ userDetail.user.first_name + ' ' + userDetail.user.last_name }} <button ng-click="editInline = !editInline">edit</button></h5>
+	<p ng-if="editInline">
+		<input type="text" ng-model="userDetail.tempUser.first_name" />
+		<input type="text" ng-model="userDetail.tempUser.last_name" />
+		<button ng-click="userDetail.updateUserInformation()">Validate</button>
+	</p>
+	<ul>
+		<li>Email: {{userDetail.user.email}}</li>
+		<li>Country: {{userDetail.user.country}}</li>
+		<li>IP: {{userDetail.user.ip_address}}</li>
+	</ul>
+</div>

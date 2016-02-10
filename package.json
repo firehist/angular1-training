@@ -4,15 +4,15 @@
   "description": "An awesome KISS Application",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test0207",
+    "test": "npm run test0301",
     "test0201": "karma start karma-0201.conf.js",
-    "test0207": "karma start karma-0207.conf.js"
+    "test0302": "karma start karma-0302.conf.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "angular": "^1.5.0",
     "angular-mocks": "^1.5.0",
+    "angular-route": "^1.5.0",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
@@ -20,5 +20,10 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.7",
     "live-server": "^0.9.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "angular-ui-router": "^0.2.18"
   }
 }

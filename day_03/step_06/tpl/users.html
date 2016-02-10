@@ -1,0 +1,7 @@
+<!-- Template users.html -->
+<!-- ViewModel information coming from routing controller -->
+<h4>Users template is here !</h4>
+<p ng-repeat="user in users.data">
+	<b>{{ user.first_name + ' ' + user.last_name }}</b> <button type="button" ng-click="detail = !detail">Detail</button>
+	<user-detail ng-if="detail" user="user"></user-detail>
+</p>

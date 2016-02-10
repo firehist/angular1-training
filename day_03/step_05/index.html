@@ -1,0 +1,80 @@
+<html>
+
+    <head>
+      <!-- npm dependencies -->
+      <script type="text/javascript" src="../../node_modules/angular/angular.js"></script>
+      <!-- Our application -->
+      <script type="text/javascript">
+        // myApp AngularJS Module
+        var myApp = angular.module('myApp', []);
+        // myCtrl controller
+        myApp.controller('myCtrl', function () {
+          var vm = this;
+          vm.object = {
+            firstname: 'Benjamin',
+            lastname: 'Longearet'
+          };
+          vm.string = 'String Benjamin'
+          vm.method = function () {
+            console.log('my method');
+          };
+        });
+        // Component without scope (work in parent scope)
+        myApp.component('someComponentOpen', {
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someComponentOpen';
+            },
+            template: '<div>{{$ctrl.name}}</div>'
+        });
+        // Component with a scope "inherite from parent"
+        myApp.directive('someDirective', function () {
+          return {
+            scope: {},
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someDirective';
+            },
+            controllerAs: 'ctrl',
+            template: '<div>{{ctrl.name}}</div>'
+          };
+        });
+        // Component with isolated scope and value coming from parent controller
+        // LIVE DEMO turn it into component
+        myApp.directive('someAdvancedComponent', function () {
+          return {
+            scope: {},
+            bindToController: {
+              someObject: '=',
+              someString: '@',
+              someExpr: '&'
+            },
+            controller: function () {
+              var vm = this;
+              vm.name = 'Benjamin from someAdvancedComponent';
+            },
+            controllerAs: '$ctrl',
+            templateUrl: 'component.html'
+          };
+        });
+      </script>
+    </head>
+    <!-- ng-app will declare the root level of our "myApp" angularJS Application -->
+    <body ng-app="myApp" ng-controller="myCtrl as my">
+
+      <h4>Component open bar</h4>
+      <div some-component-open></div>
+
+      <h4>Component scope isolé</h4>
+      <div some-component></div>
+      
+      <h4>Component avancé</h4>
+      <div some-advanced-component some-object="my.object" some-string="my.string" some-expr="my.method"></div>
+
+      <pre>
+        {{my|json}}
+      </pre>
+
+    </body>
+
+</html>

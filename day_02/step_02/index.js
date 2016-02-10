@@ -18,20 +18,20 @@ function WeatherCtrl($scope) {
   // $scope.$watch listen an AngularJS Expression (weather.locations here) to get changes
 
   // It doesn't works
-  $scope.$watch('weather.locations', function (oldValue, newValue) {
-    console.log('watch 01', oldValue, 'newValue 01', newValue);
+  $scope.$watch('weather.locations', function (myNewVal, oldVal) {
+    console.log('watch 01:', oldVal, 'newValue 01:', newValue);
   });
 
   // It works
-  $scope.$watch('weather.locations.length', function (oldValue, newValue) {
-    console.log('watch 02', oldValue, 'newValue 02', newValue);
+  $scope.$watch('weather.locations.length', function (oldVal, oldVal) {
+    console.log('watch 02:', oldVal, 'newValue 02:', newValue);
   });
 
   // It also works
   $scope.$watch(function () {
     return vm.locations.length;
-  }, function (oldValue, newValue) {
-    console.log('watch 03', oldValue, 'newValue 03', newValue);
+  }, function (oldVal, oldVal) {
+    console.log('watch 03:', oldVal, 'newValue 03:', newValue);
   });
   // Expose addLocation method to ViewModel
   vm.addLocation = function addLocation () {

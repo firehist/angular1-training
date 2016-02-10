@@ -16,12 +16,17 @@ describe('myApp', () => {
 	    it('should keep uppercase', () => {
 	    	expect(curFilter('Bonjour')).toBe('Bonjour')
 	    })	
+	    it('should return original value when not a string', () => {
+	    	expect(curFilter(12345)).toBe(12345)
+	    })	
     })
 
     describe('separatorFilter', () => {
     	var curFilter
 
-    	beforeEach(() => inject((separatorFilter) => curFilter = separatorFilter))
+    	beforeEach(() => inject(($filter) => {
+    		curFilter = $filter('separator')
+    	}))
 
 	    it('has a separator filter', () => {
 	        expect(curFilter).not.toBeNull();
