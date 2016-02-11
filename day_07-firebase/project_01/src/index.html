@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Awesome chat application</title>
+
+  <link type="text/css" rel="stylesheet" href="./style/base.css" />
+  <link type="text/css" rel="stylesheet" href="./style/app.css" />
+</head>
+<body ng-app="project">
+  
+  <div id="global">
+      <div id="entete">Chat application</div>
+      <div id="navigation">
+        <a href="#/home">Page d'accueil</a> - <a href="#/chats">Chat</a>  
+      </div>
+      <div id="contenu" ng-view></div>
+    </div>  
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-route/angular-route.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src="../node_modules/angularfire/dist/angularfire.js"></script>
+    <script src="./app.js"></script>
+    <script src="./modules/home/_home.js"></script>
+    <script src="./modules/chat/_chat.js"></script>
+    <script src="./modules/chat/chatComponent.js"></script>
+    <script src="./modules/chat/chatComponentController.js"></script>
+    <script src="./modules/chat/chatIndexController.js"></script>
+    <script src="./modules/chat/chatListController.js"></script>
+    <script src="./modules/chat/chatService.js"></script>
+
+</body>
+</html>

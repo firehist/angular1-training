@@ -1,0 +1,130 @@
+body {
+	color: #F0E39E;
+	background: #181A12; /* Voir -> Note 1 ci-dessous */
+}
+a {
+	color: #FF6533;
+}
+a:hover, a:focus {
+	color: #FF4C00;
+}
+strong {
+	color: #A1B55D;
+}
+
+/* En-tête */
+#entete {
+	background: #263238;
+	color: #E0F7FA;
+}
+
+/* Navigation */
+#navigation {
+	background: #607D8B;
+	color: #E0F7FA;
+}
+#navigation a {
+	color: #E0F7FA;
+}
+#navigation a:hover, #navigation a:focus {
+	color: #80DEEA;
+}
+
+/* Contenu principal */
+#contenu {
+	color: #363B29;
+	background: #ECEFF1;
+}
+#contenu a {
+	color: #332510;
+}
+#contenu a:hover, #contenu a:focus {
+	color: #6E5122;
+}
+#contenu strong {
+	color: #181A12;
+}
+
+/* Pied de page */
+#pied {
+	color: #E6A948;
+}
+
+
+/* --- POSITIONNEMENT --- */
+
+/* Page */
+body {
+	padding: 0; /* -> 2 */
+}
+
+/* En-tête */
+#entete {
+	padding: 15px 20px 10px 20px;
+}
+#entete h1 {
+	margin: 0;
+}
+#entete h1 img {
+	float: left;
+	margin: 7px 20px 10px 0;
+}
+#entete .sous-titre {
+	margin: 4px 0 15px 0;
+}
+
+/* Menu de navigation */
+#navigation {
+	padding: 12px 15px;
+}
+#navigation ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#navigation li {
+	display: inline; /* -> 3 */
+}
+#navigation a {
+	padding: 6px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
+}
+
+/* Contenu */
+#contenu {
+	padding: 10px 20px;
+}
+#contenu > :first-child {
+	margin-top: 10px;
+}
+#contenu p, #contenu li {
+	line-height: 1.5;
+}
+
+/* Pied de page */
+#pied {
+	padding: 15px 20px;
+	font-size: .85em;
+}
+#pied p {
+	margin: .5em 0;
+}
+#pied #copyright {
+	float: right;
+	margin: .5em 0 30px 10%;
+	font-size: 1em;
+}
+
+.room-wrapper {
+    background:#eee;
+}
+.room-content {
+    height: 450px;
+    overflow:auto;
+    padding: 3px;
+}
+.room-input {
+    padding: 3px;
+}

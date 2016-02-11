@@ -74,5 +74,8 @@ myApp.component('userDetail', {
     // Bind from external scope to controller
     bindings: {
     	'user': '='
+    },
+    link: function (scope, element, attrs) {
+    	console.log('okokok')
     }
 })

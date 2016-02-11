@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style/main.css">
+
+  </head>
+  <body ng-app="chatApplication">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div style="position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-50px;z-index: -1;">
+        <p><img src="./image/gears.svg" /></p>
+        <p class="text-info">Chargement en cours</p>
+    </div>
+
+    <ui-view></ui-view>
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src="../node_modules/angularfire/dist/angularfire.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../node_modules/angular-md5/angular-md5.js"></script>
+
+    <script src="modules/auth/_auth.js"></script>
+    <script src="modules/auth/authService.js"></script>
+    <script src="modules/auth/authController.js"></script>
+
+    <script src="modules/user/_user.js"></script>
+    <script src="modules/user/userController.js"></script>
+    <script src="modules/user/userService.js"></script>
+
+    <script src="modules/channel/_channel.js"></script>
+    <script src="modules/channel/channelCreateController.js"></script>
+    <script src="modules/channel/channelIndexController.js"></script>
+    <script src="modules/channel/channelMessageController.js"></script>
+    <script src="modules/channel/channelMessageService.js"></script>
+    <script src="modules/channel/channelService.js"></script>
+    
+    <script src="modules/home/_home.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My awesome page</title>
+
+	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="style/fixed-navbar-top.css" rel="stylesheet">
+
+</head>
+<body ng-app="awesomeApp">
+
+	<nav class="navbar navbar-default navbar-fixed-top"></nav>
+
+	<div class="container" ui-view>
+	</div>
+
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+	<script src="./modules/navbar/_navbar.js"></script>
+	<script src="./modules/navbar/navbarComponent.js"></script>
+
+	<script src="./modules/user/_user.js"></script>
+	<script src="./modules/user/userService.js"></script>
+	<script src="./modules/user/userCardComponent.js"></script>
+	<script src="./modules/user/userIndexController.js"></script>
+	<script src="./modules/user/userDetailController.js"></script>
+
+	<script src="./app.js"></script>
+	<script src="./routing.js"></script>
+	
+</body>
+</html>

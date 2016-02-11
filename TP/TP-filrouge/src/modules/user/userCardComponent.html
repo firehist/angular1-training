@@ -1,0 +1,4 @@
+{{$ctrl.user.name.first + ' ' + $ctrl.user.name.last}}
+<br/>
+<button ui-sref="user.detail({id: $ctrl.user.salt})">+ d'infos</button>
+<button ng-click="$ctrl.delUser({user: $ctrl.user})">Supprimer</button>

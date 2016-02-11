@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MiniTP - Order Form</title>
+
+	<!-- Some webfonts & stile -->
+	<link href="http://fonts.googleapis.com/css?family=Cookie|Open+Sans:400,700" rel="stylesheet" />
+	<link href="style.css" rel="stylesheet" />
+
+</head>
+<!-- Declare a new AngularJS App based on the AngularJS module miniTPOrderForm and associate the controller to this DOM node. -->
+<body ng-app="miniTPOrderForm" ng-controller="orderFormCtrl as orderFormCtrl">
+
+	<form novalidate>
+		<h1>Articles</h1>
+
+		<ul>
+			<!-- Loop through the article list and assign a click handler and a class "selected" depending on the select status of the article. -->
+			<li ng-repeat="article in orderFormCtrl.articles" ng-click="orderFormCtrl.toggleSelectArticle(article)" ng-class="{selected:orderFormCtrl.isArticleSelected(article)}">
+				{{article.title}} <span>{{article.price | currency}}</span>
+			</li>
+		</ul>
+
+		<div class="total">
+			<!-- Here we display the total price of all chosen articles. -->
+			Total: <span>{{orderFormCtrl.total | currency}}
+		</div>
+	</form>
+
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="app.js"></script>
+	
+</body>
+</html>

@@ -49,11 +49,11 @@ myApp.config(function($urlRouterProvider, $stateProvider) {
 		})
 });
 
+// Run - $rootScope
 myApp.run(function($rootScope, $state, $stateParams) {
-	$rootScope.$state = $state
+	$rootScope.$state = $state.current
 	$rootScope.$stateParams = $stateParams
 })
-
 
 // Controllers
 myApp.controller('HomeController', HomeController)
@@ -66,7 +66,7 @@ function UsersController(users) {
 	vm.users = users
 }
 myApp.controller('UserController', UserController)
-function UserController(user) {
+function UserController($rootScope, user) {
 	var vm = this
 	vm.user = user
 }
