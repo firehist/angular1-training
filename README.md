@@ -1,6 +1,7 @@
 Twitter : [blongearet](twitter.com/blongearet)
-
+Skype : [firehist](callto:firehist)
 Email : [blongearet@gmail.com](mailto:blongearet@gmail.com)
+Slack : [nomades-advanced.slack.com](http://nomades-advanced.slack.com)
 
 # Récupérer le projet github en local
 `git clone https://github.com/firehist/angular-training`
