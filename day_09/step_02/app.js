@@ -15,7 +15,7 @@ angular
 				// Travailler avec ngModelCtrl
 				// ngModelCtrl = ngModelController
 				ngModelCtrl.$formatters.push(function(value) {
-					return new Date(parseInt(value))
+					return new Date(value)
 				})
 
 				ngModelCtrl.$parsers.push(function(value) {

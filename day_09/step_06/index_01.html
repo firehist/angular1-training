@@ -43,7 +43,7 @@
 					maxlength="40"
 					required>
 
-				<div ng-messages="myForm.email.$error" style="color:maroon" role="alert">
+				<div ng-messages="myForm.email.$error" style="color:maroon" ng-messages-multiple role="alert">
 					<div ng-message="email">Il faut saisir un email valide</div>
 					<div ng-message="required">Veuillez renseigner le champs</div>
 					<div ng-message="minlength">Le champs est trop court!</div>
